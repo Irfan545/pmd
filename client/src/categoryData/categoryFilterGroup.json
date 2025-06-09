@@ -1,0 +1,2498 @@
+[
+  {
+    "id": "9",
+    "type": "groups",
+    "attributes": {
+      "title": "Axle- / Wheel Drive"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/9?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "79",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Boots"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/79?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "82",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Differential"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/82?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "78",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/78?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "83",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Flexible Couplings"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/83?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "84",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Joints"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/84?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "81",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Shafts"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/81?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "80",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Vibration Absorber"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/80?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "type": "groups",
+    "attributes": {
+      "title": "Axle / Wheel Suspension"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/18?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "193",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Axle Beam"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/193?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "195",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control / Suspension Arms"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/195?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "196",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hub / Bearings"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/196?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "197",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Stabiliser"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/197?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "194",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Hub Assembly"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/194?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "type": "groups",
+    "attributes": {
+      "title": "Body / Frame / Cab"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/15?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "167",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body Parts"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/167?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "168",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Bonnets / Lids / Doors"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/168?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "169",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Bumper"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/169?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "176",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cabin Tilt System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/176?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "166",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cab Suspension"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/166?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "175",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Convertible Top"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/175?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "170",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Glazing"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/170?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "165",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Holder"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/165?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "173",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Ladder Frame"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/173?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "164",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Locks"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/164?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "172",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Mirror"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/172?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "174",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Panelling"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/174?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "171",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Wiper- / Wash System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/171?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "type": "groups",
+    "attributes": {
+      "title": "Braking"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/2?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "16",
+        "type": "subgroups",
+        "attributes": {
+          "title": "ABS"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/16?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "17",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Brake Components"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/17?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "20",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Actuation (Mechanical)"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/20?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "15",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Disc & Pads,…"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/15?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "14",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Drums & Shoes,…"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/14?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "19",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Braking Force Enhancement"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/19?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "12",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/12?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "18",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/18?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "13",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Permanent Service Brake System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/13?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "type": "groups",
+    "attributes": {
+      "title": "Clutch"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/6?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "58",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Adjustment"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/58?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "60",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Clutch Cover"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/60?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "62",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Clutch Disc"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/62?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "61",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Clutch Kit"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/61?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "55",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Disengagement"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/55?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "54",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/54?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "63",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Flywheel"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/63?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "57",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lines / Hoses"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/57?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "56",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Master / Slave Cylinder"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/56?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "59",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sheathed Cables"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/59?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "type": "groups",
+    "attributes": {
+      "title": "Electric"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/3?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "26",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body Electric"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/26?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "21",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Braking"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/21?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "25",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Comfort Electrics"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/25?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "32",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Connecting Elements"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/32?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "29",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control Elements"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/29?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "27",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine / Transmission Electrics"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/27?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "28",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Heating / Air Conditioning System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/28?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "23",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Illumination"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/23?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "24",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Instruments"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/24?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "30",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Relay"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/30?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "33",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sensors"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/33?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "22",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/22?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "31",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Switch"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/31?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "type": "groups",
+    "attributes": {
+      "title": "Engine"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/4?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "37",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Supply"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/37?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "39",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Belt Drive (Except Engine Timing)"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/39?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "38",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control Electrics / Electronics"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/38?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "40",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cooling System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/40?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "44",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Crankcase Ventilation"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/44?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "43",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cylinder Head"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/43?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "41",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Block"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/41?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "42",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Suspension"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/42?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "34",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Timing / Valve Train"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/34?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "35",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fuel System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/35?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "46",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Ignition System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/46?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "36",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lubrication"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/36?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "47",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pre-Glowing System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/47?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "45",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Vacuum System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/45?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "type": "groups",
+    "attributes": {
+      "title": "Equipment And Accessories"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/7?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "64",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Trailer Hitch"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/64?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "1",
+    "type": "groups",
+    "attributes": {
+      "title": "Exhaust System"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/1?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "9",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/9?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "11",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Exhaust Cooling"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/11?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "2",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Exhaust Manifold"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/2?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "6",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/6?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "3",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Muffler"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/3?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "4",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Particulate / Soot Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/4?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "7",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Permanent Service Brake System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/7?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "5",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Seal"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/5?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "1",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Tubes"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/1?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "10",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Turbocharger"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/10?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "8",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Urea Injection"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/8?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "type": "groups",
+    "attributes": {
+      "title": "Filtration"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/21?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "204",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/204?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "206",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cabin Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/206?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "205",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fuel Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/205?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "209",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/209?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "208",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Oil Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/208?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "207",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission Oil Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/207?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "type": "groups",
+    "attributes": {
+      "title": "Heating / Ventilation / Air Condition"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/13?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "146",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Conditioning System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/146?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "152",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Distribution"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/152?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "145",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cabin Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/145?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "148",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control Elements"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/148?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "147",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cooling Fan"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/147?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "150",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Heat Exchanger"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/150?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "149",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hoses"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/149?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "151",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Parking- / Auxiliary Heating"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/151?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "22",
+    "type": "groups",
+    "attributes": {
+      "title": "Hybrid / Electrical Drive"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/22?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "211",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Supply"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/211?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "213",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Battery Cooling"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/213?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "212",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Charging System"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/212?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "214",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric Drive Motor"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/214?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "210",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/210?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "type": "groups",
+    "attributes": {
+      "title": "Interior Equipment"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/14?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "162",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Accessories"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/162?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "163",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Covering / Panelling"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/163?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "153",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/153?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "158",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Gear Shift Lever And Gate"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/158?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "156",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Handles / Cranks"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/156?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "161",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Load Cover"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/161?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "159",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Locks"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/159?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "157",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pedals"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/157?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "160",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Seats"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/160?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "155",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sheathed Cables"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/155?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "154",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Switch"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/154?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "type": "groups",
+    "attributes": {
+      "title": "Lubricants, Fluids, Chemicals"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/10?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "88",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Antifreeze"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/88?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "86",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Fluid"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/86?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "93",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Diesel Exhaust Fluid (AdBlue®)"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/93?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "85",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Oil"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/85?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "92",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Greases"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/92?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "91",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic Fluids"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/91?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "89",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lubricants"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/89?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "95",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Oil Absorbers and Degreasers"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/95?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "90",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Oils"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/90?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "94",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sealants and Adhesives"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/94?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "96",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Test Equipment / Documentation"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/96?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "87",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission / Gear Oil"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/87?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "type": "groups",
+    "attributes": {
+      "title": "Maintenance"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/8?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "67",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/67?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "71",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Antifreeze"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/71?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "72",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Fluid"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/72?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "69",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cabin Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/69?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "76",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Diesel Exhaust Fluid (AdBlue®)"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/76?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "70",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Oil"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/70?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "66",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Oil Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/66?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "68",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fuel Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/68?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "75",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic Fluids"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/75?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "65",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Maintenance Packages"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/65?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "77",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Test Equipment / Documentation"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/77?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "73",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission / Gear Oil"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/73?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "74",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission Oil Filter"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/74?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "23",
+    "type": "groups",
+    "attributes": {
+      "title": "NVH (Rubber / -Metal parts)"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/23?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "218",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Axle / Wheel Suspension"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/218?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "219",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/219?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "215",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Braking"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/215?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "222",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Drive Train"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/222?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "220",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine / Transmission"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/220?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "221",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Rubber Metal Buffer"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/221?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "217",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/217?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "216",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Suspension"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/216?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "type": "groups",
+    "attributes": {
+      "title": "Pneumatics"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/17?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "188",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Brake Components"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/188?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "190",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Bodywork Pneumatics"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/190?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "189",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Compressed Air Spring"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/189?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "191",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Regulation, Adjustment"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/191?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "192",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Supply"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/192?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "type": "groups",
+    "attributes": {
+      "title": "Steering"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/16?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "180",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Connecting Rods"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/180?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "177",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/177?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "178",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Inner Tie Rods"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/178?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "183",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Linkages / Flexible Couplings"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/183?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "182",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Outer Tie Rod Ends"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/182?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "179",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Arm"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/179?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "187",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Boots"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/187?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "185",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Box"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/185?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "184",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Columns"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/184?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "186",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Hydraulics"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/186?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "181",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Tie Rods"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/181?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "type": "groups",
+    "attributes": {
+      "title": "Suspension"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/12?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "142",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Coil Springs"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/142?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "140",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Compressed Air Spring"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/140?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "141",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic Springing"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/141?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "139",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Leaf Spring"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/139?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "143",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Shock Absorption"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/143?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "144",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Suspension Strut"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/144?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "type": "groups",
+    "attributes": {
+      "title": "Tools / Workshop Equipment"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/20?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "199",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lubricants, Fluids, Chemicals"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/199?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "200",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Special Tools"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/200?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "202",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Tools"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/202?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "203",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Test Equipment / Documentation"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/203?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "201",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Workshop Equipment"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/201?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "type": "groups",
+    "attributes": {
+      "title": "Transmission"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/5?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "49",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Actuation"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/49?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "51",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Gear Electrics"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/51?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "48",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lubrication"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/48?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "50",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/50?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "52",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission Housing"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/52?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "53",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission Mounting"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/53?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "type": "groups",
+    "attributes": {
+      "title": "Universal Parts"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/11?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "108",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Belts"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/108?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "109",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body / Frame / Cab -> Bump Stops"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/109?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "110",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body / Frame / Cab -> Rivets (Metal / Plastic)"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/110?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "99",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brackets"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/99?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "103",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Clamps"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/103?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "105",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cotter Pins"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/105?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "102",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Discs / Rings"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/102?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "114",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Bulbs"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/114?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "112",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Cable Ties / Insulation Tapes"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/112?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "113",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Horns"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/113?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "111",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Plugs / Sockets"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/111?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "115",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Rear lamps and other rear lights"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/115?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "116",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Side Marker- /  Position Lights"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/116?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "117",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Warning Lights"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/117?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "118",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Work Lights"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/118?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "119",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine -> Belts"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/119?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "121",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine -> Clamps"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/121?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "120",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine -> Fuel Hoses"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/120?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "106",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fasteners"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/106?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "100",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Nuts"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/100?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "122",
+        "type": "subgroups",
+        "attributes": {
+          "title": "NVH (Rubber / -Metal parts) -> Rubber-Metal Buffers"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/122?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "123",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Air Dryer Cartridges"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/123?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "124",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Air Tanks"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/124?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "125",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Components / Accessories / Assortiments"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/125?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "126",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Coupling Heads"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/126?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "127",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Tubes / Hoses"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/127?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "101",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Rivets"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/101?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "107",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Rubber Metal Buffer"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/107?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "104",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Screws"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/104?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "97",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Seal Rings"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/97?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "98",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sleeves / Bushes"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/98?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "128",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Ball Joints"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/128?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "129",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Bearings"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/129?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "130",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Bolts"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/130?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "131",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Circlips"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/131?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "132",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Cotter Pins"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/132?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "137",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Discs / Rings"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/137?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "133",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Grease Nipples"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/133?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "134",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Nuts"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/134?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "135",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Sealing Rings"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/135?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "136",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Shaft Seals"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/136?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      },
+      {
+        "id": "138",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Wheels -> Wheel Nuts"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/138?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "type": "groups",
+    "attributes": {
+      "title": "Wheels"
+    },
+    "links": {
+      "self": "https://partsfinder.bilsteingroup.com/api/groups/19?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+    },
+    "subGroup": [
+      {
+        "id": "198",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Wheel Fastening"
+        },
+        "links": {
+          "self": "https://partsfinder.bilsteingroup.com/api/sub-groups/198?filter[vehicleType]=CAR&filter[country]=GB&filter[brands]=BLUE_PRINT,FEBI,MOTAIR"
+        }
+      }
+    ]
+  }
+]

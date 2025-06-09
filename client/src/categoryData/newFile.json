@@ -1,0 +1,1763 @@
+[
+  {
+    "id": "9",
+    "type": "groups",
+    "attributes": {
+      "title": "Axle- / Wheel Drive"
+    },
+    "subGroup": [
+      {
+        "id": "79",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Boots"
+        }
+      },
+      {
+        "id": "82",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Differential"
+        }
+      },
+      {
+        "id": "78",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        }
+      },
+      {
+        "id": "83",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Flexible Couplings"
+        }
+      },
+      {
+        "id": "84",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Joints"
+        }
+      },
+      {
+        "id": "81",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Shafts"
+        }
+      },
+      {
+        "id": "80",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Vibration Absorber"
+        }
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "type": "groups",
+    "attributes": {
+      "title": "Axle / Wheel Suspension"
+    },
+    "subGroup": [
+      {
+        "id": "193",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Axle Beam"
+        }
+      },
+      {
+        "id": "195",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control / Suspension Arms"
+        }
+      },
+      {
+        "id": "196",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hub / Bearings"
+        }
+      },
+      {
+        "id": "197",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Stabiliser"
+        }
+      },
+      {
+        "id": "194",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Hub Assembly"
+        }
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "type": "groups",
+    "attributes": {
+      "title": "Body / Frame / Cab"
+    },
+    "subGroup": [
+      {
+        "id": "167",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body Parts"
+        }
+      },
+      {
+        "id": "168",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Bonnets / Lids / Doors"
+        }
+      },
+      {
+        "id": "169",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Bumper"
+        }
+      },
+      {
+        "id": "176",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cabin Tilt System"
+        }
+      },
+      {
+        "id": "166",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cab Suspension"
+        }
+      },
+      {
+        "id": "175",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Convertible Top"
+        }
+      },
+      {
+        "id": "170",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Glazing"
+        }
+      },
+      {
+        "id": "165",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Holder"
+        }
+      },
+      {
+        "id": "173",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Ladder Frame"
+        }
+      },
+      {
+        "id": "164",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Locks"
+        }
+      },
+      {
+        "id": "172",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Mirror"
+        }
+      },
+      {
+        "id": "174",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Panelling"
+        }
+      },
+      {
+        "id": "171",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Wiper- / Wash System"
+        }
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "type": "groups",
+    "attributes": {
+      "title": "Braking"
+    },
+    "subGroup": [
+      {
+        "id": "16",
+        "type": "subgroups",
+        "attributes": {
+          "title": "ABS"
+        }
+      },
+      {
+        "id": "17",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Brake Components"
+        }
+      },
+      {
+        "id": "20",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Actuation (Mechanical)"
+        }
+      },
+      {
+        "id": "15",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Disc & Pads,\u2026"
+        }
+      },
+      {
+        "id": "14",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Drums & Shoes,\u2026"
+        }
+      },
+      {
+        "id": "19",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Braking Force Enhancement"
+        }
+      },
+      {
+        "id": "12",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric"
+        }
+      },
+      {
+        "id": "18",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic System"
+        }
+      },
+      {
+        "id": "13",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Permanent Service Brake System"
+        }
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "type": "groups",
+    "attributes": {
+      "title": "Clutch"
+    },
+    "subGroup": [
+      {
+        "id": "58",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Adjustment"
+        }
+      },
+      {
+        "id": "60",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Clutch Cover"
+        }
+      },
+      {
+        "id": "62",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Clutch Disc"
+        }
+      },
+      {
+        "id": "61",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Clutch Kit"
+        }
+      },
+      {
+        "id": "55",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Disengagement"
+        }
+      },
+      {
+        "id": "54",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        }
+      },
+      {
+        "id": "63",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Flywheel"
+        }
+      },
+      {
+        "id": "57",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lines / Hoses"
+        }
+      },
+      {
+        "id": "56",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Master / Slave Cylinder"
+        }
+      },
+      {
+        "id": "59",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sheathed Cables"
+        }
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "type": "groups",
+    "attributes": {
+      "title": "Electric"
+    },
+    "subGroup": [
+      {
+        "id": "26",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body Electric"
+        }
+      },
+      {
+        "id": "21",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Braking"
+        }
+      },
+      {
+        "id": "25",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Comfort Electrics"
+        }
+      },
+      {
+        "id": "32",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Connecting Elements"
+        }
+      },
+      {
+        "id": "29",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control Elements"
+        }
+      },
+      {
+        "id": "27",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine / Transmission Electrics"
+        }
+      },
+      {
+        "id": "28",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Heating / Air Conditioning System"
+        }
+      },
+      {
+        "id": "23",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Illumination"
+        }
+      },
+      {
+        "id": "24",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Instruments"
+        }
+      },
+      {
+        "id": "30",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Relay"
+        }
+      },
+      {
+        "id": "33",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sensors"
+        }
+      },
+      {
+        "id": "22",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering"
+        }
+      },
+      {
+        "id": "31",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Switch"
+        }
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "type": "groups",
+    "attributes": {
+      "title": "Engine"
+    },
+    "subGroup": [
+      {
+        "id": "37",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Supply"
+        }
+      },
+      {
+        "id": "39",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Belt Drive (Except Engine Timing)"
+        }
+      },
+      {
+        "id": "38",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control Electrics / Electronics"
+        }
+      },
+      {
+        "id": "40",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cooling System"
+        }
+      },
+      {
+        "id": "44",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Crankcase Ventilation"
+        }
+      },
+      {
+        "id": "43",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cylinder Head"
+        }
+      },
+      {
+        "id": "41",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Block"
+        }
+      },
+      {
+        "id": "42",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Suspension"
+        }
+      },
+      {
+        "id": "34",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Timing / Valve Train"
+        }
+      },
+      {
+        "id": "35",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fuel System"
+        }
+      },
+      {
+        "id": "46",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Ignition System"
+        }
+      },
+      {
+        "id": "36",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lubrication"
+        }
+      },
+      {
+        "id": "47",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pre-Glowing System"
+        }
+      },
+      {
+        "id": "45",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Vacuum System"
+        }
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "type": "groups",
+    "attributes": {
+      "title": "Equipment And Accessories"
+    },
+    "subGroup": [
+      {
+        "id": "64",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Trailer Hitch"
+        }
+      }
+    ]
+  },
+  {
+    "id": "1",
+    "type": "groups",
+    "attributes": {
+      "title": "Exhaust System"
+    },
+    "subGroup": [
+      {
+        "id": "9",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control"
+        }
+      },
+      {
+        "id": "11",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Exhaust Cooling"
+        }
+      },
+      {
+        "id": "2",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Exhaust Manifold"
+        }
+      },
+      {
+        "id": "6",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        }
+      },
+      {
+        "id": "3",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Muffler"
+        }
+      },
+      {
+        "id": "4",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Particulate / Soot Filter"
+        }
+      },
+      {
+        "id": "7",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Permanent Service Brake System"
+        }
+      },
+      {
+        "id": "5",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Seal"
+        }
+      },
+      {
+        "id": "1",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Tubes"
+        }
+      },
+      {
+        "id": "10",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Turbocharger"
+        }
+      },
+      {
+        "id": "8",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Urea Injection"
+        }
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "type": "groups",
+    "attributes": {
+      "title": "Filtration"
+    },
+    "subGroup": [
+      {
+        "id": "204",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Filter"
+        }
+      },
+      {
+        "id": "206",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cabin Filter"
+        }
+      },
+      {
+        "id": "205",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fuel Filter"
+        }
+      },
+      {
+        "id": "209",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic Filter"
+        }
+      },
+      {
+        "id": "208",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Oil Filter"
+        }
+      },
+      {
+        "id": "207",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission Oil Filter"
+        }
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "type": "groups",
+    "attributes": {
+      "title": "Heating / Ventilation / Air Condition"
+    },
+    "subGroup": [
+      {
+        "id": "146",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Conditioning System"
+        }
+      },
+      {
+        "id": "152",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Distribution"
+        }
+      },
+      {
+        "id": "145",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cabin Filter"
+        }
+      },
+      {
+        "id": "148",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Control Elements"
+        }
+      },
+      {
+        "id": "147",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cooling Fan"
+        }
+      },
+      {
+        "id": "150",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Heat Exchanger"
+        }
+      },
+      {
+        "id": "149",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hoses"
+        }
+      },
+      {
+        "id": "151",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Parking- / Auxiliary Heating"
+        }
+      }
+    ]
+  },
+  {
+    "id": "22",
+    "type": "groups",
+    "attributes": {
+      "title": "Hybrid / Electrical Drive"
+    },
+    "subGroup": [
+      {
+        "id": "211",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Supply"
+        }
+      },
+      {
+        "id": "213",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Battery Cooling"
+        }
+      },
+      {
+        "id": "212",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Charging System"
+        }
+      },
+      {
+        "id": "214",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric Drive Motor"
+        }
+      },
+      {
+        "id": "210",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission"
+        }
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "type": "groups",
+    "attributes": {
+      "title": "Interior Equipment"
+    },
+    "subGroup": [
+      {
+        "id": "162",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Accessories"
+        }
+      },
+      {
+        "id": "163",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Covering / Panelling"
+        }
+      },
+      {
+        "id": "153",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        }
+      },
+      {
+        "id": "158",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Gear Shift Lever And Gate"
+        }
+      },
+      {
+        "id": "156",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Handles / Cranks"
+        }
+      },
+      {
+        "id": "161",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Load Cover"
+        }
+      },
+      {
+        "id": "159",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Locks"
+        }
+      },
+      {
+        "id": "157",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pedals"
+        }
+      },
+      {
+        "id": "160",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Seats"
+        }
+      },
+      {
+        "id": "155",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sheathed Cables"
+        }
+      },
+      {
+        "id": "154",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Switch"
+        }
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "type": "groups",
+    "attributes": {
+      "title": "Lubricants, Fluids, Chemicals"
+    },
+    "subGroup": [
+      {
+        "id": "88",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Antifreeze"
+        }
+      },
+      {
+        "id": "86",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Fluid"
+        }
+      },
+      {
+        "id": "93",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Diesel Exhaust Fluid (AdBlue\u00ae)"
+        }
+      },
+      {
+        "id": "85",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Oil"
+        }
+      },
+      {
+        "id": "92",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Greases"
+        }
+      },
+      {
+        "id": "91",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic Fluids"
+        }
+      },
+      {
+        "id": "89",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lubricants"
+        }
+      },
+      {
+        "id": "95",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Oil Absorbers and Degreasers"
+        }
+      },
+      {
+        "id": "90",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Oils"
+        }
+      },
+      {
+        "id": "94",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sealants and Adhesives"
+        }
+      },
+      {
+        "id": "96",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Test Equipment / Documentation"
+        }
+      },
+      {
+        "id": "87",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission / Gear Oil"
+        }
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "type": "groups",
+    "attributes": {
+      "title": "Maintenance"
+    },
+    "subGroup": [
+      {
+        "id": "67",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Filter"
+        }
+      },
+      {
+        "id": "71",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Antifreeze"
+        }
+      },
+      {
+        "id": "72",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brake Fluid"
+        }
+      },
+      {
+        "id": "69",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cabin Filter"
+        }
+      },
+      {
+        "id": "76",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Diesel Exhaust Fluid (AdBlue\u00ae)"
+        }
+      },
+      {
+        "id": "70",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Oil"
+        }
+      },
+      {
+        "id": "66",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine Oil Filter"
+        }
+      },
+      {
+        "id": "68",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fuel Filter"
+        }
+      },
+      {
+        "id": "75",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic Fluids"
+        }
+      },
+      {
+        "id": "65",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Maintenance Packages"
+        }
+      },
+      {
+        "id": "77",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Test Equipment / Documentation"
+        }
+      },
+      {
+        "id": "73",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission / Gear Oil"
+        }
+      },
+      {
+        "id": "74",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission Oil Filter"
+        }
+      }
+    ]
+  },
+  {
+    "id": "23",
+    "type": "groups",
+    "attributes": {
+      "title": "NVH (Rubber / -Metal parts)"
+    },
+    "subGroup": [
+      {
+        "id": "218",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Axle / Wheel Suspension"
+        }
+      },
+      {
+        "id": "219",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body"
+        }
+      },
+      {
+        "id": "215",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Braking"
+        }
+      },
+      {
+        "id": "222",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Drive Train"
+        }
+      },
+      {
+        "id": "220",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine / Transmission"
+        }
+      },
+      {
+        "id": "221",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Rubber Metal Buffer"
+        }
+      },
+      {
+        "id": "217",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering"
+        }
+      },
+      {
+        "id": "216",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Suspension"
+        }
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "type": "groups",
+    "attributes": {
+      "title": "Pneumatics"
+    },
+    "subGroup": [
+      {
+        "id": "188",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Air Brake Components"
+        }
+      },
+      {
+        "id": "190",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Bodywork Pneumatics"
+        }
+      },
+      {
+        "id": "189",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Compressed Air Spring"
+        }
+      },
+      {
+        "id": "191",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Regulation, Adjustment"
+        }
+      },
+      {
+        "id": "192",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Supply"
+        }
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "type": "groups",
+    "attributes": {
+      "title": "Steering"
+    },
+    "subGroup": [
+      {
+        "id": "180",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Connecting Rods"
+        }
+      },
+      {
+        "id": "177",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fittings / Fasteners"
+        }
+      },
+      {
+        "id": "178",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Inner Tie Rods"
+        }
+      },
+      {
+        "id": "183",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Linkages / Flexible Couplings"
+        }
+      },
+      {
+        "id": "182",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Outer Tie Rod Ends"
+        }
+      },
+      {
+        "id": "179",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Arm"
+        }
+      },
+      {
+        "id": "187",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Boots"
+        }
+      },
+      {
+        "id": "185",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Box"
+        }
+      },
+      {
+        "id": "184",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Columns"
+        }
+      },
+      {
+        "id": "186",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Steering Hydraulics"
+        }
+      },
+      {
+        "id": "181",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Tie Rods"
+        }
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "type": "groups",
+    "attributes": {
+      "title": "Suspension"
+    },
+    "subGroup": [
+      {
+        "id": "142",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Coil Springs"
+        }
+      },
+      {
+        "id": "140",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Compressed Air Spring"
+        }
+      },
+      {
+        "id": "141",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Hydraulic Springing"
+        }
+      },
+      {
+        "id": "139",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Leaf Spring"
+        }
+      },
+      {
+        "id": "143",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Shock Absorption"
+        }
+      },
+      {
+        "id": "144",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Suspension Strut"
+        }
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "type": "groups",
+    "attributes": {
+      "title": "Tools / Workshop Equipment"
+    },
+    "subGroup": [
+      {
+        "id": "199",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lubricants, Fluids, Chemicals"
+        }
+      },
+      {
+        "id": "200",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Special Tools"
+        }
+      },
+      {
+        "id": "202",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Tools"
+        }
+      },
+      {
+        "id": "203",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Test Equipment / Documentation"
+        }
+      },
+      {
+        "id": "201",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Workshop Equipment"
+        }
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "type": "groups",
+    "attributes": {
+      "title": "Transmission"
+    },
+    "subGroup": [
+      {
+        "id": "49",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Actuation"
+        }
+      },
+      {
+        "id": "51",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Gear Electrics"
+        }
+      },
+      {
+        "id": "48",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Lubrication"
+        }
+      },
+      {
+        "id": "50",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission"
+        }
+      },
+      {
+        "id": "52",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission Housing"
+        }
+      },
+      {
+        "id": "53",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Transmission Mounting"
+        }
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "type": "groups",
+    "attributes": {
+      "title": "Universal Parts"
+    },
+    "subGroup": [
+      {
+        "id": "108",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Belts"
+        }
+      },
+      {
+        "id": "109",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body / Frame / Cab -> Bump Stops"
+        }
+      },
+      {
+        "id": "110",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Body / Frame / Cab -> Rivets (Metal / Plastic)"
+        }
+      },
+      {
+        "id": "99",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Brackets"
+        }
+      },
+      {
+        "id": "103",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Clamps"
+        }
+      },
+      {
+        "id": "105",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Cotter Pins"
+        }
+      },
+      {
+        "id": "102",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Discs / Rings"
+        }
+      },
+      {
+        "id": "114",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Bulbs"
+        }
+      },
+      {
+        "id": "112",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Cable Ties / Insulation Tapes"
+        }
+      },
+      {
+        "id": "113",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Horns"
+        }
+      },
+      {
+        "id": "111",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Plugs / Sockets"
+        }
+      },
+      {
+        "id": "115",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Rear lamps and other rear lights"
+        }
+      },
+      {
+        "id": "116",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Side Marker- /  Position Lights"
+        }
+      },
+      {
+        "id": "117",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Warning Lights"
+        }
+      },
+      {
+        "id": "118",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Electric -> Work Lights"
+        }
+      },
+      {
+        "id": "119",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine -> Belts"
+        }
+      },
+      {
+        "id": "121",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine -> Clamps"
+        }
+      },
+      {
+        "id": "120",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Engine -> Fuel Hoses"
+        }
+      },
+      {
+        "id": "106",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Fasteners"
+        }
+      },
+      {
+        "id": "100",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Nuts"
+        }
+      },
+      {
+        "id": "122",
+        "type": "subgroups",
+        "attributes": {
+          "title": "NVH (Rubber / -Metal parts) -> Rubber-Metal Buffers"
+        }
+      },
+      {
+        "id": "123",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Air Dryer Cartridges"
+        }
+      },
+      {
+        "id": "124",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Air Tanks"
+        }
+      },
+      {
+        "id": "125",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Components / Accessories / Assortiments"
+        }
+      },
+      {
+        "id": "126",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Coupling Heads"
+        }
+      },
+      {
+        "id": "127",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Pneumatics -> Tubes / Hoses"
+        }
+      },
+      {
+        "id": "101",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Rivets"
+        }
+      },
+      {
+        "id": "107",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Rubber Metal Buffer"
+        }
+      },
+      {
+        "id": "104",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Screws"
+        }
+      },
+      {
+        "id": "97",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Seal Rings"
+        }
+      },
+      {
+        "id": "98",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Sleeves / Bushes"
+        }
+      },
+      {
+        "id": "128",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Ball Joints"
+        }
+      },
+      {
+        "id": "129",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Bearings"
+        }
+      },
+      {
+        "id": "130",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Bolts"
+        }
+      },
+      {
+        "id": "131",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Circlips"
+        }
+      },
+      {
+        "id": "132",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Cotter Pins"
+        }
+      },
+      {
+        "id": "137",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Discs / Rings"
+        }
+      },
+      {
+        "id": "133",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Grease Nipples"
+        }
+      },
+      {
+        "id": "134",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Nuts"
+        }
+      },
+      {
+        "id": "135",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Sealing Rings"
+        }
+      },
+      {
+        "id": "136",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Standard Parts -> Shaft Seals"
+        }
+      },
+      {
+        "id": "138",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Wheels -> Wheel Nuts"
+        }
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "type": "groups",
+    "attributes": {
+      "title": "Wheels"
+    },
+    "subGroup": [
+      {
+        "id": "198",
+        "type": "subgroups",
+        "attributes": {
+          "title": "Wheel Fastening"
+        }
+      }
+    ]
+  }
+]
