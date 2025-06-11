@@ -116,7 +116,6 @@ export const getCart = async (
         success: false,
         message: "Unauthenticated user",
       });
-
       return;
     }
 
@@ -128,17 +127,15 @@ export const getCart = async (
     }) as Cart;
 
     if (!cart) {
-      res.json({
-        success: false,
-        messaage: "No Item found in cart",
+      res.status(200).json({
+        success: true,
         data: [],
       });
-
       return;
     }
 
     const cartItemsWithProducts = await Promise.all(
-      cart?.items.map(async (item: CartItem) => {
+      cart.items.map(async (item: CartItem) => {
         const product = await prisma.product.findUnique({
           where: { id: item.productId },
           select: {
@@ -161,7 +158,7 @@ export const getCart = async (
       })
     );
 
-    res.json({
+    res.status(200).json({
       success: true,
       data: cartItemsWithProducts,
     });

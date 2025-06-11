@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useProductStore } from "@/store/useProductStore";
 import { Product } from "@/store/useProductStore";
 import { API_ROUTES } from "@/utils/api";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 interface PartNumber {
   id: number;
@@ -44,60 +45,52 @@ interface ProductWithPartNumbers {
 
 const SearchResults = () => {
   const searchParams = useSearchParams();
-  const [products, setProducts] = useState<ProductWithPartNumbers[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const router = useRouter();
+  const { products, loading, error, fetchProducts, currentPage, totalPages, setCurrentPage } = useProductStore();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const search = searchParams.get("search");
     const category = searchParams.get("category");
 
-    const fetchSearchResults = async () => {
-      try {
-        setLoading(true);
-        const queryParams = new URLSearchParams();
-        if (search) queryParams.set("search", search);
-        if (category) queryParams.set("categoryId", category);
-        queryParams.set("page", currentPage.toString());
-        queryParams.set("limit", "10");
-
-        const response = await fetch(`${API_ROUTES.PRODUCTS}?${queryParams.toString()}`, {
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setProducts(data.products || []);
-        setTotalPages(data.totalPages || 1);
-      } catch (err) {
-        console.error('Search error:', err);
-        setError(err instanceof Error ? err.message : "An error occurred while searching");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSearchResults();
-  }, [searchParams, currentPage]);
+    if (search) {
+      setSearchTerm(search);
+      fetchProducts({
+        search,
+        categoryId: category ? parseInt(category) : undefined,
+        page: currentPage,
+        limit: 10,
+        sortBy: 'createdAt',
+        sortOrder: 'desc'
+      }).catch(error => {
+        console.error('Error fetching products:', error);
+      });
+    }
+  }, [searchParams, currentPage, fetchProducts, isClient]);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
+
+  if (!isClient) {
+    return null; // Return null on server-side
+  }
 
   if (loading) return <div className="p-4">Loading...</div>;
   if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Search Results</h1>
+      <h1 className="text-2xl font-bold mb-4">
+        Search Results for "{searchTerm}"
+      </h1>
       {products.length === 0 ? (
         <div className="text-center text-gray-500">No products found</div>
       ) : (
@@ -122,18 +115,18 @@ const SearchResults = () => {
                     <span className="text-xl font-bold">£{product.price.toFixed(2)}</span>
                     {product.brand && (
                       <span className="text-sm text-gray-500">
-                        {product.brand.name}
+                        {typeof product.brand === 'string' ? product.brand : product.brand.name}
                       </span>
                     )}
                   </div>
                   {product.model && (
                     <div className="mt-2 text-sm text-gray-500">
-                      Model: {product.model.name}
+                      Model: {typeof product.model === 'string' ? product.model : product.model.name}
                     </div>
                   )}
                   {product.category && (
                     <div className="mt-2 text-sm text-gray-500">
-                      Category: {product.category.name}
+                      Category: {typeof product.category === 'string' ? product.category : product.category.name}
                     </div>
                   )}
                   {product.partNumbers && product.partNumbers.length > 0 && (
@@ -158,35 +151,27 @@ const SearchResults = () => {
               </div>
             ))}
           </div>
-          
-          {/* Pagination Controls */}
-          <div className="mt-8 flex justify-center items-center gap-4">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className={`px-4 py-2 rounded ${
-                currentPage === 1
-                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                  : 'bg-blue-500 text-white hover:bg-blue-600'
-              }`}
-            >
-              Previous
-            </button>
-            <span className="text-gray-600">
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className={`px-4 py-2 rounded ${
-                currentPage === totalPages
-                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                  : 'bg-blue-500 text-white hover:bg-blue-600'
-              }`}
-            >
-              Next
-            </button>
-          </div>
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-8">
+              <Button
+                variant="outline"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </Button>
+              <span className="mx-2">
+                Page {currentPage} of {totalPages}
+              </span>
+              <Button
+                variant="outline"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </Button>
+            </div>
+          )}
         </>
       )}
     </div>

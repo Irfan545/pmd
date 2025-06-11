@@ -37,26 +37,35 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const checkValidation = await ProtectLoginActions(formData.email);
-    if (!checkValidation.success) {
-      toast(checkValidation.error, {
+    try {
+      const checkValidation = await ProtectLoginActions(formData.email);
+      
+      if (checkValidation && !checkValidation.success) {
+        toast(checkValidation.error, {
+          className: "bg-red-500 text-white",
+        });
+        return;
+      }
+
+      const success = await login(formData.email, formData.password);
+      
+      if (success) {
+        toast("Log-In successfully");
+        const user = useAuthStore.getState().user;
+        if (user?.role === "SUPER_ADMIN") {
+          router.push("/super-admin");
+        } else {
+          router.push("/");
+        }
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      toast("Login failed. Please try again.", {
         className: "bg-red-500 text-white",
       });
     }
-    const success = await login(formData.email, formData.password);
-    console.log(success, "success");
-    if (success) {
-      toast("Log-In successfully");
-      const user = useAuthStore.getState().user;
-      if (user?.role === "SUPER_ADMIN") {
-        router.push("/super-admin");
-      } else {
-        router.push("/");
-      }
-    }
-    return;
   };
-  //   const [isLoading, setIsLoading] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#f5f5f5] flex">
       <div className="hidden lg:block w-1/2 bg-[#f5f5f5] relative overflow-hidden">

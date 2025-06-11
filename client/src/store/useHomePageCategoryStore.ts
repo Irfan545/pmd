@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { API_ROUTES } from "@/utils/api";
-import axiosInstance from "@/lib/axios";
+import axiosInstance from "@/utils/api";
 import axios from "axios";
 
 export interface HomePageCategory {
@@ -10,15 +10,15 @@ export interface HomePageCategory {
   subcategories: HomePageCategory[];
 }
 
-export interface Product {
+interface Product {
   id: number;
   name: string;
-  description: string | null;
+  description?: string;
   price: number;
-  brand: { id: number; name: string } | null;
-  model: { id: number; name: string } | null;
-  category: HomePageCategory | null;
-  imageUrl: string[];
+  images: string[];
+  brand?: { name: string };
+  model?: { name: string };
+  category?: { name: string };
 }
 
 interface ProductCache {
@@ -58,9 +58,7 @@ export const useHomePageCategoryStore = create<HomePageCategoryState>((set, get)
 
     set({ loading: true, error: null });
     try {
-      console.log('Fetching categories from:', `${API_ROUTES.HOME_CATEGORIES}/main`);
-      const response = await axiosInstance.get(`${API_ROUTES.HOME_CATEGORIES}/main`);
-      console.log('Categories response:', response.data);
+      const response = await axiosInstance.get(API_ROUTES.HOME_CATEGORIES + '/main');
       const categories = response.data;
       set({ 
         categories, 
@@ -78,31 +76,21 @@ export const useHomePageCategoryStore = create<HomePageCategoryState>((set, get)
   },
 
   setSelectedCategory: (category) => {
-    console.log('Setting selected category:', category);
     set({ selectedCategory: category });
   },
 
   fetchProductsByCategory: async (categoryId: number, page: number = 1, limit: number = 10) => {
     const state = get();
-    if (state.loading) {
-      console.log('Already loading products, skipping request');
-      return;
-    }
+    if (state.loading) return;
     
     // First check memory cache
     if (state.productCache[categoryId] && page === 1) {
-      console.log('Using cached products for category:', categoryId);
-      console.log('Cached products:', state.productCache[categoryId]);
       set({ products: state.productCache[categoryId], loading: false });
       return;
     }
 
     set({ loading: true, error: null });
     try {
-      console.log('Fetching products for category:', categoryId);
-      console.log('Request URL:', `${API_ROUTES.HOME_CATEGORIES}/${categoryId}/products`);
-      console.log('Request params:', { page, limit });
-      
       const response = await axiosInstance.get(
         `${API_ROUTES.HOME_CATEGORIES}/${categoryId}/products`,
         {
@@ -110,21 +98,13 @@ export const useHomePageCategoryStore = create<HomePageCategoryState>((set, get)
         }
       );
       
-      console.log('Products API Response:', response);
-      console.log('Products Response Data:', response.data);
-      
       if (!response.data.success) {
-        console.error('API request was not successful:', response.data);
         throw new Error('API request was not successful');
       }
 
       const products = response.data.data?.products || [];
       const total = response.data.data?.total || 0;
       const totalPages = Math.ceil(total / limit);
-      
-      console.log('Processed products:', products);
-      console.log('Total products:', total);
-      console.log('Total pages:', totalPages);
       
       // Update cache and current products
       const newCache = { ...state.productCache, [categoryId]: products };
@@ -138,7 +118,6 @@ export const useHomePageCategoryStore = create<HomePageCategoryState>((set, get)
       // Save to localStorage only for first page and only in browser
       if (page === 1 && isBrowser) {
         try {
-          console.log('Saving to localStorage:', { products, newCache });
           localStorage.setItem('products', JSON.stringify(products));
           localStorage.setItem('productCache', JSON.stringify(newCache));
         } catch (storageError) {
@@ -163,7 +142,6 @@ export const useHomePageCategoryStore = create<HomePageCategoryState>((set, get)
       // Clear localStorage on error only in browser
       if (isBrowser) {
         try {
-          console.log('Clearing localStorage due to error');
           localStorage.removeItem('products');
           localStorage.removeItem('productCache');
         } catch (storageError) {
@@ -174,7 +152,6 @@ export const useHomePageCategoryStore = create<HomePageCategoryState>((set, get)
   },
 
   clearProducts: () => {
-    console.log('Clearing products from state and localStorage');
     set({ products: [] });
     if (isBrowser) {
       try {

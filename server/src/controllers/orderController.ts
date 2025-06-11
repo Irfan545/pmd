@@ -1,8 +1,8 @@
 import axios from "axios";
-import { AuthenticatedRequest } from "../middleware/authMiddleware";
+import { AuthRequest } from "../middleware/authMiddleware";
 import { NextFunction, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { prisma } from "../server";
+import { prisma } from "../app";
 
 const PAYPAL_CLIENT_ID =
   "AYYtmQuBVHm_q4fO-nRv84xIKhQk1-BdhSLckYRxcBJLhxI5EcxafPKdkvKpqLDP-pNLNXalxvlUSgZE";
@@ -27,7 +27,7 @@ async function getPaypalAccessToken() {
 }
 
 export const createPaypalOrder = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
@@ -92,7 +92,7 @@ export const createPaypalOrder = async (
 };
 
 export const capturePaypalOrder = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
@@ -120,7 +120,7 @@ export const capturePaypalOrder = async (
 };
 
 export const createFinalOrder = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
@@ -146,9 +146,9 @@ export const createFinalOrder = async (
       const newOrder = await prisma.order.create({
         data: {
           userId,
-          addressId,
-          couponId,
-          total,
+          addressId: Number(addressId),
+          couponId: couponId as any || null,
+          totalAmount: total,
           paymentMethod: "CREDIT_CARD",
           paymentStatus: "COMPLETED",
           paymentId,
@@ -192,7 +192,7 @@ export const createFinalOrder = async (
       if (couponId) {
         await prisma.coupon.update({
           where: { id: couponId },
-          data: { usageCount: { increment: 1 } },
+          data: { userCount: { increment: 1 } },
         });
       }
 
@@ -211,7 +211,7 @@ export const createFinalOrder = async (
 };
 
 export const getOrder = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
@@ -230,12 +230,11 @@ export const getOrder = async (
 
     const order = await prisma.order.findFirst({
       where: {
-        id: orderId,
+        id: Number(orderId),
         userId,
       },
       include: {
         items: true,
-        address: true,
         coupon: true,
       },
     });
@@ -250,7 +249,7 @@ export const getOrder = async (
 };
 
 export const updateOrderStatus = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
@@ -270,7 +269,7 @@ export const updateOrderStatus = async (
 
     await prisma.order.updateMany({
       where: {
-        id: orderId,
+        id: Number(orderId),
       },
       data: {
         status,
@@ -290,7 +289,7 @@ export const updateOrderStatus = async (
 };
 
 export const getAllOrdersForAdmin = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
@@ -309,7 +308,6 @@ export const getAllOrdersForAdmin = async (
     const orders = await prisma.order.findMany({
       include: {
         items: true,
-        address: true,
         user: {
           select: {
             id: true,
@@ -330,7 +328,7 @@ export const getAllOrdersForAdmin = async (
 };
 
 export const getOrdersByUserId = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
@@ -352,7 +350,6 @@ export const getOrdersByUserId = async (
       },
       include: {
         items: true,
-        address: true,
       },
       orderBy: {
         createdAt: "desc",

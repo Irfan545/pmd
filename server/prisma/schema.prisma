@@ -123,7 +123,7 @@ model ProductCompatibility {
 model Order {
   id            Int           @id @default(autoincrement())
   userId        Int
-  addressId     String
+  addressId     Int
   totalAmount   Float
   status        OrderStatus   @default(PENDING)
   paymentMethod PaymentMethod
@@ -185,7 +185,7 @@ model CartItem {
 }
 
 model Address {
-  id         String   @id @default(cuid())
+    id        Int      @id @default(autoincrement())
   userId     Int
   user       User     @relation(fields: [userId], references: [id])
   name       String

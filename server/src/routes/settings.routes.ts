@@ -12,13 +12,13 @@ const router = express.Router();
 
 // Public routes
 router.get("/fetch-feature-products", fetchFeaturedProducts);
-router.get("/get-banners", fetchFeatureBanners);
+router.get("/banners", fetchFeatureBanners);
 
 // Protected routes
-router.use(authJWT);
-router.post("/update-feature-products", updateFeaturedProducts);
+router.post("/update-feature-products", authJWT, updateFeaturedProducts);
 router.post(
   "/banners",
+  authJWT,
   upload.array("images", 5),
   addFeatureBanners
 );

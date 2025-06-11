@@ -1,83 +1,71 @@
 import { NextRequest, NextResponse } from "next/server";
-import { jwtVerify } from "jose";
 
 const publicRoutes = ["/auth/register", "/auth/login"];
-const superAdminRoutes = ["/super-admin", "/super-admim/:path*"];
-const userRoutes = ["/home"];
+const superAdminRoutes = ["/super-admin", "/super-admin/:path*"];
+// const userRoutes = ["/", "/listing", "/account", "/search"];
+const userRoutes = ["/account", "/checkout", "/cart"]; // Only account page requires authentication
+const publicUserRoutes = ["/", "/listing", "/search"]; // These routes are accessible without login
+
+// Add paths that should be excluded from middleware checks
+const publicPaths = [
+  "/auth/login",
+  "/auth/register",
+  "/api",
+  "/_next",
+  "/static",
+  "/images",
+  "/favicon.ico",
+];
 
 export async function middleware(request: NextRequest) {
-  const accessToken = request.cookies.get("accessToken")?.value;
   const { pathname } = request.nextUrl;
 
-  if (accessToken) {
-    try {
-      const { payload } = await jwtVerify(
-        accessToken,
-        new TextEncoder().encode(process.env.JWT_SECRET)
-      );
-      const { role } = payload as {
-        role: string;
-      };
-
-      if (publicRoutes.includes(pathname)) {
-        return NextResponse.redirect(
-          new URL(
-            role === "SUPER_ADMIN" ? "/super-admin" : "/home",
-            request.url
-          )
-        );
-      }
-
-      if (
-        role === "SUPER_ADMIN" &&
-        userRoutes.some((route) => pathname.startsWith(route))
-      ) {
-        return NextResponse.redirect(new URL("/super-admin", request.url));
-      }
-      if (
-        role !== "SUPER_ADMIN" &&
-        superAdminRoutes.some((route) => pathname.startsWith(route))
-      ) {
-        return NextResponse.redirect(new URL("/home", request.url));
-      }
-
-      return NextResponse.next();
-    } catch (e) {
-      console.error("Token verification failed", e);
-      const refreshResponse = await fetch(
-        "http://localhost:3000/api/auth/refresh-token",
-        {
-          method: "POST",
-          credentials: "include",
-        }
-      );
-
-      if (refreshResponse.ok) {
-        const response = NextResponse.next();
-        response.cookies.set(
-          "accessToken",
-          refreshResponse.headers.get("Set-Cookie") || ""
-        );
-        return response;
-      } else {
-        //ur refresh is also failed
-        const response = NextResponse.redirect(
-          new URL("/auth/login", request.url)
-        );
-        response.cookies.delete("accessToken");
-        response.cookies.delete("refreshToken");
-        return response;
-      }
-    }
+  // Skip middleware for public paths
+  if (publicPaths.some(path => pathname.startsWith(path))) {
+    return NextResponse.next();
   }
 
-  if (!publicRoutes.includes(pathname)) {
+  const accessToken = request.cookies.get("accessToken")?.value;
+  const isAuthPage = pathname.startsWith("/auth");
+  const isApiRoute = pathname.startsWith("/api");
+
+  // Allow API routes to pass through
+  if (isApiRoute) {
+    return NextResponse.next();
+  }
+
+  // Redirect to login if accessing protected route without token
+  if (!accessToken && userRoutes.some(route => pathname.startsWith(route))) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
+  }
+
+  // Redirect to home if accessing auth pages with token
+  if (accessToken && isAuthPage) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Handle undefined routes
+  const isPublicRoute = publicRoutes.some(route => pathname === route);
+  const isSuperAdminRoute = superAdminRoutes.some(route => pathname.startsWith(route));
+  const isUserRoute = userRoutes.some(route => pathname.startsWith(route));
+  const isPublicUserRoute = publicUserRoutes.some(route => pathname === route || (route !== '/' && pathname.startsWith(route)));
+
+  if (!isPublicRoute && !isSuperAdminRoute && !isUserRoute && !isPublicUserRoute) {
+    return NextResponse.redirect(new URL('/404', request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
 };

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { API_ROUTES } from "@/utils/api";
-import axiosInstance from "@/lib/axios";
+import axiosInstance from "@/utils/api";
 
 export interface Category {
   id: number;
@@ -23,12 +23,12 @@ export const useCategoryStore = create<CategoryState>((set) => ({
   fetchCategories: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await axiosInstance.get(`${API_ROUTES.CATEGORIES}/main`);
+      const response = await axiosInstance.get(API_ROUTES.CATEGORIES.MAIN);
       const categories = response.data;
       set({ categories, loading: false });
       return categories;
     } catch (error) {
-      set({ error: "Failed to fetch categories" });
+      set({ error: "Failed to fetch categories", loading: false });
       return [];
     }
   },

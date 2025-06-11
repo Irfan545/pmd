@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { SearchIcon } from "lucide-react";
 
 interface SearchBarProps {
   placeholder?: string;
@@ -34,12 +35,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
       // Default behavior: navigate to search page with query
       const queryParams = new URLSearchParams();
       if (searchQuery) queryParams.set('search', searchQuery);
-      router.push(`/search?${queryParams.toString()}`);
+      router.push(`/search?${queryParams.toString()}`, { scroll: false });
     }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
       handleSearch();
     }
   };
@@ -51,14 +53,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
         placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         className={inputClassName}
       />
       <Button 
         onClick={handleSearch}
         className={buttonClassName}
       >
-        {buttonText}
+       <SearchIcon className="w-4 h-4" /> {buttonText}
       </Button>
     </div>
   );

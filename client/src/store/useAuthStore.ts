@@ -1,108 +1,114 @@
 import { API_ROUTES } from "@/utils/api";
-import axios from "axios";
+import axiosInstance from "@/utils/api";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { useCartStore } from "./useCartStore";
 
-type User = {
-  id: string;
+interface User {
+  id: number;
+  name: string;
   email: string;
-  name: string | null;
-  role: "USER" | "SUPER_ADMIN";
-};
+  role: string;
+}
 
-type AuthState = {
+interface AuthState {
   user: User | null;
-  //   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
-  register: (
-    name: string,
-    email: string,
-    password: string
-  ) => Promise<string | null>;
-  login: (email: string, password: string) => Promise<boolean>;
+  login: (email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string) => Promise<boolean>;
   logout: () => Promise<void>;
-  refreshAccessToken: () => Promise<boolean>;
-};
+}
 
-const axiosInstance = axios.create({
-  baseURL: API_ROUTES.AUTH,
-  withCredentials: true,
-});
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       user: null,
       isLoading: false,
       error: null,
-      register: async (name, email, password) => {
+
+      login: async (email: string, password: string) => {
         set({ isLoading: true, error: null });
         try {
-          const response = await axiosInstance.post("/register", {
+          const response = await axiosInstance.post(API_ROUTES.AUTH.LOGIN, {
+            email,
+            password,
+          });
+
+          if (response.data.success) {
+            set({ 
+              user: response.data.user, 
+              isLoading: false 
+            });
+            
+            // Fetch cart details after successful login
+            try {
+              await useCartStore.getState().fetchCart();
+            } catch (error) {
+              console.error("Error fetching cart after login:", error);
+            }
+            
+            // Redirect to home page after successful login
+            if (typeof window !== 'undefined') {
+              window.location.href = '/';
+            }
+          } else {
+            throw new Error(response.data.message || "Login failed");
+          }
+        } catch (error) {
+          console.error("Login error:", error);
+          set({ 
+            error: error instanceof Error ? error.message : "Login failed", 
+            isLoading: false 
+          });
+          throw error;
+        }
+      },
+
+      register: async (name: string, email: string, password: string) => {
+        set({ isLoading: true, error: null });
+        try {
+          const response = await axiosInstance.post(API_ROUTES.AUTH.REGISTER, {
             name,
             email,
             password,
           });
-          set({
-            isLoading: false,
-          });
-          return response.data.userId;
+
+          if (response.data.success) {
+            set({ 
+              user: response.data.user, 
+              isLoading: false 
+            });
+            return true;
+          } else {
+            throw new Error(response.data.message || "Registration failed");
+          }
         } catch (error) {
-          set({
-            isLoading: false,
-            error: axios.isAxiosError(error)
-              ? error?.response?.data?.error || "Registration Failed"
-              : "Registration Failed",
-          });
-          return null;
-        }
-      },
-      login: async (email, password) => {
-        set({ isLoading: true, error: null });
-        try {
-          console.log('Making login request to:', API_ROUTES.AUTH + '/login');
-          const response = await axiosInstance.post("/login", {
-            email,
-            password,
-          });
-          console.log('Login response:', response.data);
-          set({
-            user: response.data.user,
-            isLoading: false,
-          });
-          return true;
-        } catch (error) {
-          console.error('Login error:', error);
-          set({
-            isLoading: false,
-            error: axios.isAxiosError(error)
-              ? error?.response?.data?.error || "Login Failed"
-              : "Login Failed",
+          console.error("Registration error:", error);
+          set({ 
+            error: error instanceof Error ? error.message : "Registration failed", 
+            isLoading: false 
           });
           return false;
         }
       },
+
       logout: async () => {
-        set({ isLoading: true, error: null });
+        set({ isLoading: true });
         try {
-          await axiosInstance.post("/logout");
+          await axiosInstance.post(API_ROUTES.AUTH.LOGOUT);
           set({ user: null, isLoading: false });
+          
+          // Clear cart on logout
+          useCartStore.getState().items = [];
+          
+          // Redirect to login page after logout
+          if (typeof window !== 'undefined') {
+            window.location.href = '/auth/login';
+          }
         } catch (error) {
-          set({
-            isLoading: false,
-            error: axios.isAxiosError(error)
-              ? error?.response?.data?.error || "Logout Failed"
-              : "Logout Failed",
-          });
-        }
-      },
-      refreshAccessToken: async () => {
-        try {
-          await axiosInstance.post("/refresh-token");
-          return true;
-        } catch (error) {
-          console.log(error);
-          return false;
+          console.error("Logout error:", error);
+          set({ error: "Logout failed", isLoading: false });
         }
       },
     }),

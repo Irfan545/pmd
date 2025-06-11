@@ -73,7 +73,7 @@ const Header = () => {
             onKeyPress={handleKeyPress}
           />
           <Button 
-            className="rounded-none ml-4 pt-1.5 pb-1.5 pl-10 pr-10 bg-[#004892] text-white"
+            className="rounded-none ml-4 pt-1.5 pb-1.5 pl-10 pr-10 bg-primary text-white hover:bg-accent"
             onClick={handleSearch}
           >
             Search

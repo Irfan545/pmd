@@ -1,5 +1,5 @@
 import express from "express";
-import { authenticateJwt, isSuperAdmin } from "../middleware/authMiddleware";
+import { authJWT, isSuperAdmin } from "../middleware/authMiddleware";
 import {
   capturePaypalOrder,
   createFinalOrder,
@@ -12,7 +12,7 @@ import {
 
 const router = express.Router();
 
-router.use(authenticateJwt);
+router.use(authJWT);
 
 router.post("/create-paypal-order", createPaypalOrder);
 router.post("/capture-paypal-order", capturePaypalOrder);

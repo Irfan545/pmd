@@ -3,7 +3,7 @@ import axios from "axios";
 import { create } from "zustand";
 
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   description: string;
   price: number;
@@ -20,6 +20,13 @@ export interface Product {
   engineType: string;
   images: string[];
   colors: string[];
+  partNumbers?: {
+    id: number;
+    number: string;
+    type: string;
+    manufacturer: string;
+    isOriginal: boolean;
+  }[];
 }
 
 interface ProductState {
@@ -78,16 +85,19 @@ export const useProductStore = create<ProductState>((set, get) => ({
         sortOrder: params.sortOrder || 'desc'
       };
 
-      let endpoint = `${API_ROUTES.PRODUCTS}/search`;
+      let endpoint = API_ROUTES.PRODUCTS.SEARCH;
       
       // If we have a category, use the category endpoint
       if (params.categories?.[0] && !isNaN(Number(params.categories[0]))) {
-        endpoint = `${API_ROUTES.PRODUCTS}/category/${params.categories[0]}`;
+        endpoint = `${API_ROUTES.PRODUCTS.CATEGORY}/${params.categories[0]}`;
       }
 
-      console.log('Store: Making API request to:', endpoint, 'with params:', serverParams);
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const url = `${baseUrl}${endpoint}`;
 
-      const response = await axios.get(endpoint, {
+      console.log('Store: Making API request to:', url, 'with params:', serverParams);
+
+      const response = await axios.get(url, {
         params: serverParams,
         withCredentials: true,
       });
@@ -128,7 +138,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
       }
       
       set({ error: errorMessage, loading: false });
-      throw error; // Re-throw to be caught by the component
+      throw error;
     }
   },
 
@@ -136,7 +146,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
     set({ loading: true, error: null });
     try {
       const response = await axios.get(
-        `${API_ROUTES.PRODUCTS}/fetch-admin-products`,
+        process.env.NEXT_PUBLIC_API_URL + `${API_ROUTES.PRODUCTS}/fetch-admin-products`,
         {
           withCredentials: true,
         }
@@ -198,32 +208,69 @@ export const useProductStore = create<ProductState>((set, get) => ({
   fetchProductById: async (id: string) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.get(`${API_ROUTES.PRODUCTS}/${id}`);
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.PRODUCTS.FETCH_ONE}/${id}`, {
+        withCredentials: true
+      });
       set({ loading: false });
-      return response.data as Product;
+      return response.data;
     } catch (error) {
+      console.error('Error fetching product:', error);
       set({ error: "Failed to fetch product", loading: false });
       return null;
     }
   },
 
-  fetchProducts: (params) => {
+  fetchProducts: async (params) => {
     set({ loading: true, error: null });
-    return axios.get(`${API_ROUTES.PRODUCTS}/search`, {
-        params,
+    try {
+      console.log('Fetching products with params:', params);
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + API_ROUTES.PRODUCTS.SEARCH, {
+        params: {
+          ...params,
+          page: params.page || 1,
+          limit: params.limit || 10,
+          sortBy: params.sortBy || 'createdAt',
+          sortOrder: params.sortOrder || 'desc'
+        },
         withCredentials: true,
-    })
-    .then((response) => {
+      });
+
+      console.log('Search response:', response.data);
+
+      if (!response.data.products) {
+        throw new Error('Invalid response format: products array is missing');
+      }
+
       const { products, total, totalPages } = response.data;
+      
+      if (!Array.isArray(products)) {
+        throw new Error('Invalid response format: products is not an array');
+      }
+
       set({
         products,
         totalProducts: total,
         totalPages,
         loading: false,
       });
-    })
-    .catch((error) => {
-      set({ error: "Failed to fetch products", loading: false });
-    });
+    } catch (error) {
+      console.error('Error in fetchProducts:', error);
+      let errorMessage = 'Failed to fetch products';
+      
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 404) {
+          errorMessage = 'No products found';
+        } else if (error.response?.data?.details) {
+          errorMessage = error.response.data.details;
+        } else if (error.response?.data?.error) {
+          errorMessage = error.response.data.error;
+        }
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      
+      set({ error: errorMessage, loading: false });
+      throw error;
+    }
   },
 }));

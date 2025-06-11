@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Menu, ShoppingBag, ShoppingCart, User } from "lucide-react";
+import { ArrowLeft, HomeIcon, LogOut, Menu, ShoppingBag, ShoppingBagIcon, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -25,10 +25,12 @@ const navItems = [
   {
     title: "HOME",
     to: "/",
+    icon: <HomeIcon className="mr-1 h-3 w-3" />
   },
   {
     title: "PRODUCTS",
     to: "/listing",
+    icon: <ShoppingBag className="mr-1 h-3 w-3" />
   },
 ];
 
@@ -56,6 +58,7 @@ function Header() {
         return (
           <div className="space-y-2">
             <div className="flex items-center">
+              
               <Button
                 onClick={() => setMobileView("menu")}
                 variant="ghost"
@@ -74,6 +77,7 @@ function Header() {
               >
                 Your Account
               </p>
+              <LogOut/>
               <Button
                 onClick={() => {
                   setShowSheetDialog(false);
@@ -100,7 +104,7 @@ function Header() {
                   }}
                   key={navItem.title}
                 >
-                  {navItem.title}
+                  {navItem.icon} {navItem.title}
                 </p>
               ))}
             </div>
@@ -133,7 +137,7 @@ function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link className="text-2xl font-bold" href="/">
-          <span className="text-blue-500">AI</span>SPARE<span className="text-blue-500">PARTS</span>
+          <span className="text-accent">AI</span>MOTOR<span className="text-accent">SPARES</span>
           </Link>
           <div className="hidden lg:flex items-center h-full gap-8 flex-1 justify-end px-8">
             <nav className="flex items-center space-x-8 ">
@@ -141,9 +145,9 @@ function Header() {
                 <Link
                   href={item.to}
                   key={index}
-                  className="header-link inline-block"
+                  className="header-link inline-block flex items-center"
                 >
-                  {item.title}
+                  {item.icon} {item.title}
                 </Link>
               ))}
             </nav>

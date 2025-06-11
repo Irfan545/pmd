@@ -1,16 +1,27 @@
-import { API_ROUTES } from "@/utils/api";
-import axios from "axios";
-import debounce from "lodash/debounce";
 import { create } from "zustand";
+import axios from "axios";
+import { API_ROUTES } from "@/utils/api";
+import { useAuthStore } from "./useAuthStore";
+import axiosInstance from "@/utils/api";
+import { useRouter } from "next/navigation";
 
-export interface CartItem {
-  id: string;
-  productId: string;
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string[];
+  color?: string;
+  size?: string;
+}
+
+interface CartItem {
+  id: number;
+  productId: number;
   name: string;
   price: number;
   image: string;
-  color: string;
-  size: string;
+  color: string | null;
+  size: string | null;
   quantity: number;
 }
 
@@ -19,107 +30,131 @@ interface CartStore {
   isLoading: boolean;
   error: string | null;
   fetchCart: () => Promise<void>;
-  addToCart: (item: Omit<CartItem, "id">) => Promise<void>;
-  removeFromCart: (id: string) => Promise<void>;
-  updateCartItemQuantity: (id: string, quantity: number) => Promise<void>;
-  clearCart: () => Promise<void>;
+  addToCart: (productId: number, quantity: number) => Promise<void>;
+  updateCartItem: (itemId: number, quantity: number) => Promise<void>;
+  removeFromCart: (itemId: number) => Promise<void>;
+  clearCart: () => void;
 }
 
-export const useCartStore = create<CartStore>((set, get) => {
-  const debounceUpdateCartItemQuantity = debounce(
-    async (id: string, quantity: number) => {
-      try {
-        await axios.put(
-          `${API_ROUTES.CART}/update/${id}`,
-          { quantity },
-          {
-            withCredentials: true,
-          }
-        );
-      } catch (e) {
-        set({ error: "Failed to update cart quantity" });
-      }
-    }
-  );
+export const useCartStore = create<CartStore>((set, get) => ({
+  items: [],
+  isLoading: false,
+  error: null,
 
-  return {
-    items: [],
-    isLoading: false,
-    error: null,
-    fetchCart: async () => {
-      set({ isLoading: true, error: null });
-      try {
-        const response = await axios.get(`${API_ROUTES.CART}/fetch-cart`, {
-          withCredentials: true,
-        });
+  fetchCart: async () => {
+    const { user, isLoading } = useAuthStore.getState();
+    if (!user || isLoading) return;
 
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + API_ROUTES.CART.FETCH, {
+        withCredentials: true,
+      });
+      if (response.data.success) {
         set({ items: response.data.data, isLoading: false });
-      } catch (e) {
-        if (axios.isAxiosError(e) && e.response?.status === 401) {
-          set({ items: [], isLoading: false });
-        } else {
-          set({ error: "Failed to fetch cart", isLoading: false });
-        }
+      } else {
+        throw new Error(response.data.message || "Failed to fetch cart");
       }
-    },
-    addToCart: async (item) => {
-      set({ isLoading: true, error: null });
-      try {
-        const response = await axios.post(
-          `${API_ROUTES.CART}/add-to-cart`,
-          item,
-          {
-            withCredentials: true,
-          }
-        );
+    } catch (error) {
+      console.error("Fetch cart error:", error);
+      set({ 
+        error: error instanceof Error ? error.message : "Failed to fetch cart", 
+        isLoading: false 
+      });
+    }
+  },
 
-        set((state) => ({
-          items: [...state.items, response.data.data],
-          isLoading: false,
-        }));
-      } catch (e) {
-        set({ error: "Failed to add to cart", isLoading: false });
+  addToCart: async (productId: number, quantity: number) => {
+    const { user } = useAuthStore.getState();
+    if (!user) {
+      // Redirect to login page
+      if (typeof window !== 'undefined') {
+        window.location.href = '/auth/login';
       }
-    },
-    removeFromCart: async (id) => {
-      set({ isLoading: true, error: null });
-      try {
-        await axios.delete(`${API_ROUTES.CART}/remove/${id}`, {
-          withCredentials: true,
-        });
+      return;
+    }
 
-        set((state) => ({
-          items: state.items.filter((item) => item.id !== id),
-          isLoading: false,
-        }));
-      } catch (e) {
-        set({ error: "Failed to delete from cart", isLoading: false });
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosInstance.post(process.env.NEXT_PUBLIC_API_URL + API_ROUTES.CART.ADD, {
+        productId,
+        quantity,
+      });
+
+      if (response.data.success) {
+        await get().fetchCart();
+      } else {
+        throw new Error(response.data.message || "Failed to add item to cart");
       }
-    },
-    updateCartItemQuantity: async (id, quantity) => {
-      set((state) => ({
-        items: state.items.map((cartItem) =>
-          cartItem.id === id ? { ...cartItem, quantity } : cartItem
-        ),
-      }));
+    } catch (error) {
+      console.error("Add to cart error:", error);
+      set({ 
+        error: error instanceof Error ? error.message : "Failed to add item to cart", 
+        isLoading: false 
+      });
+      throw error;
+    }
+  },
 
-      debounceUpdateCartItemQuantity(id, quantity);
-    },
-    clearCart: async () => {
-      set({ isLoading: true, error: null });
-      try {
-        await axios.post(
-          `${API_ROUTES.CART}/clear-cart`,
-          {},
-          {
-            withCredentials: true,
-          }
-        );
-
-        set({ items: [], isLoading: false });
-      } catch (e) {
-        set({ error: "Failed to cart clear ", isLoading: false });
+  updateCartItem: async (itemId: number, quantity: number) => {
+    const { user } = useAuthStore.getState();
+    if (!user) {
+      if (typeof window !== 'undefined') {
+        window.location.href = '/auth/login';
       }
-    },
-  };
-});
+      return;
+    }
+
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosInstance.put(process.env.NEXT_PUBLIC_API_URL + API_ROUTES.CART.UPDATE + `/${itemId}`, {
+        quantity,
+      });
+
+      if (response.data.success) {
+        await get().fetchCart();
+      } else {
+        throw new Error(response.data.message || "Failed to update cart item");
+      }
+    } catch (error) {
+      console.error("Update cart error:", error);
+      set({ 
+        error: error instanceof Error ? error.message : "Failed to update cart item", 
+        isLoading: false 
+      });
+      throw error;
+    }
+  },
+
+  removeFromCart: async (itemId: number) => {
+    const { user } = useAuthStore.getState();
+    if (!user) {
+      if (typeof window !== 'undefined') {
+        window.location.href = '/auth/login';
+      }
+      return;
+    }
+
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosInstance.delete(process.env.NEXT_PUBLIC_API_URL + API_ROUTES.CART.REMOVE + `/${itemId}`);
+
+      if (response.data.success) {
+        await get().fetchCart();
+      } else {
+        throw new Error(response.data.message || "Failed to remove item from cart");
+      }
+    } catch (error) {
+      console.error("Remove from cart error:", error);
+      set({ 
+        error: error instanceof Error ? error.message : "Failed to remove item from cart", 
+        isLoading: false 
+      });
+      throw error;
+    }
+  },
+
+  clearCart: () => {
+    set({ items: [], isLoading: false, error: null });
+  },
+}));

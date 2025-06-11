@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { prisma } from "../app";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
+import { AuthRequest } from "../middleware/authMiddleware";
 
 function generateToken(userId: number, email: string, role: string) {
   const accessToken = jwt.sign(
@@ -24,13 +25,15 @@ async function setTokenInCookie(
   res.cookie("accessToken", accessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-    maxAge: 60 * 60 * 1000,
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 1000, // 1 hour
   });
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: "lax",
+    path: "/",
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
 }
@@ -116,30 +119,37 @@ export const refreshToken = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { refreshToken } = req.cookies.refreshToken;
-  if (!refreshToken) {
-    res.status(401).json({ success: false, error: "No refresh token found!" });
-  }
   try {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+      res.status(401).json({ success: false, error: "No refresh token found!" });
+      return;
+    }
+
     const user = await prisma.user.findFirst({
       where: { refreshToken: refreshToken },
     });
+
     if (!user) {
       res.status(401).json({ success: false, error: "User not found!" });
       return;
     }
+
     const { accessToken, refreshToken: newRefreshToken } = generateToken(
       user.id,
       user.email,
       user.role
     );
+
     await setTokenInCookie(res, accessToken, newRefreshToken);
+    
     res.status(200).json({
       success: true,
       message: "Token refreshed successfully",
     });
   } catch (error) {
-    res.status(500).json({ error: "Error refreshing token" });
+    console.error('Token refresh error:', error);
+    res.status(500).json({ success: false, error: "Error refreshing token" });
   }
 };
 
@@ -161,5 +171,34 @@ export const logout = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
     res.status(500).json({ error: "Error logging out" });
+  }
+};
+
+export const verify = async (req: AuthRequest, res: Response): Promise<void> => {
+  try {
+    if (!req.user?.userId) {
+      res.status(401).json({ message: "Unauthorized" });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+      },
+    });
+
+    if (!user) {
+      res.status(401).json({ message: "User not found" });
+      return;
+    }
+
+    res.json({ user });
+  } catch (error) {
+    console.error("Verify error:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };

@@ -1,5 +1,8 @@
-import { NextFunction, Request, Response } from "express";
-import { jwtVerify, JWTPayload } from "jose";
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+import { prisma } from "../app";
+
+const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 
 export interface AuthRequest extends Request {
   user?: {
@@ -9,48 +12,54 @@ export interface AuthRequest extends Request {
   };
 }
 
-export const authJWT = (
+export const authJWT = async (
   req: AuthRequest,
   res: Response,
   next: NextFunction
-) => {
-  const accessToken = req.cookies.accessToken;
-  if (!accessToken) {
-    res.status(401).json({ error: "Unauthorized", success: false });
-    return;
-  }
-  jwtVerify(accessToken, new TextEncoder().encode(process.env.JWT_SECRET))
-    .then((result) => {
-      const payload = result.payload as JWTPayload & {
-        userId: number;
-        email: string;
-        role: string;
-      };
-      req.user = {
-        userId: Number(payload.id),
-        email: payload.email as string,
-        role: payload.role as string,
-      };
-      next();
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(401).json({ error: "Unauthorized", success: false });
+): Promise<void> => {
+  try {
+    const token = req.cookies.accessToken;
+
+    if (!token) {
+      res.status(401).json({ message: "No token provided" });
+      return;
+    }
+
+    const decoded = jwt.verify(token, JWT_SECRET) as {
+      userId: number;
+      email: string;
+      role: string;
+    };
+
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.userId },
     });
+
+    if (!user) {
+      res.status(401).json({ message: "User not found" });
+      return;
+    }
+
+    req.user = {
+      userId: decoded.userId,
+      email: decoded.email,
+      role: decoded.role,
+    };
+
+    next();
+  } catch (error) {
+    res.status(401).json({ message: "Invalid token" });
+  }
 };
 
 export const isSuperAdmin = (
   req: AuthRequest,
   res: Response,
   next: NextFunction
-) => {
-  if (req.user?.role === "SUPER_ADMIN") {
-    next();
-  } else {
-    res.status(403).json({
-      error: "Access Denied! Super Admin Access Required...",
-      success: false,
-    });
+): void => {
+  if (req.user?.role !== "SUPER_ADMIN") {
+    res.status(403).json({ message: "Access denied" });
     return;
   }
+  next();
 };

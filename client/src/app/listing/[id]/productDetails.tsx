@@ -3,11 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useProductStore } from "@/store/useProductStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ProductDetailsSkeleton from "./productSkeleton";
 import { useCartStore } from "@/store/useCartStore";
 import { useToast } from "@/hooks/use-toast";
+import Image from "./../../../../public/images/F1_Banner.png"
 
 function ProductDetailsContent({ id }: { id: string }) {
   const [product, setProduct] = useState<any>(null);
@@ -15,6 +17,7 @@ function ProductDetailsContent({ id }: { id: string }) {
   const { addToCart } = useCartStore();
   const { toast } = useToast();
   const router = useRouter();
+  const { user, isLoading: authLoading } = useAuthStore();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
@@ -22,10 +25,22 @@ function ProductDetailsContent({ id }: { id: string }) {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const productDetails = await fetchProductById(id);
-      if (productDetails) {
-        setProduct(productDetails);
-      } else {
+      try {
+        if (!id || isNaN(Number(id))) {
+          console.error('Invalid product ID:', id);
+          router.push("/404");
+          return;
+        }
+
+        const productDetails = await fetchProductById(id);
+        if (productDetails) {
+          setProduct(productDetails);
+        } else {
+          console.error('Product not found:', id);
+          router.push("/404");
+        }
+      } catch (error) {
+        console.error('Error fetching product:', error);
         router.push("/404");
       }
     };
@@ -33,25 +48,46 @@ function ProductDetailsContent({ id }: { id: string }) {
     fetchProduct();
   }, [id, fetchProductById, router]);
 
-  const handleAddToCart = () => {
-    if (product) {
-      addToCart({
-        productId: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.images[0],
-        color: product.colors[selectedColor],
-        size: selectedSize,
-        quantity: quantity,
-      });
-
-      setSelectedSize("");
-      setSelectedColor(0);
-      setQuantity(1);
-
+  const handleAddToCart = async () => {
+    if (authLoading) {
       toast({
-        title: "Product is added to cart",
+        title: "Please wait",
+        description: "Authentication is in progress",
+        variant: "default"
       });
+      return;
+    }
+
+    if (!user) {
+      toast({
+        title: "Please login first",
+        description: "You need to be logged in to add items to cart",
+        variant: "destructive"
+      });
+      router.push('/auth/login');
+      return;
+    }
+
+    if (product) {
+      try {
+        await addToCart(parseInt(product.id), quantity);
+
+        setSelectedSize("");
+        setSelectedColor(0);
+        setQuantity(1);
+
+        toast({
+          title: "Product added to cart",
+          description: "Your item has been added to your cart successfully"
+        });
+      } catch (error) {
+        console.error('Add to cart error:', error);
+        toast({
+          title: "Failed to add to cart",
+          description: error instanceof Error ? error.message : "There was an error adding the item to your cart",
+          variant: "destructive"
+        });
+      }
     }
   };
 
@@ -65,7 +101,7 @@ function ProductDetailsContent({ id }: { id: string }) {
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3 flex gap-4">
             <div className="hidden lg:flex flex-col gap-2 w-24">
-              {product?.images.map((image: string, index: number) => (
+              {product.images?.map((image: string, index: number) => (
                 <button
                   onClick={() => setSelectedImage(index)}
                   key={index}
@@ -76,7 +112,7 @@ function ProductDetailsContent({ id }: { id: string }) {
                   } border-2`}
                 >
                   <img
-                    src={image}
+                    src={image || Image.src}
                     alt={`Product-${index + 1}`}
                     className="w-full aspect-square object-cover"
                   />
@@ -85,7 +121,7 @@ function ProductDetailsContent({ id }: { id: string }) {
             </div>
             <div className="flex-1 relative w-[300px]">
               <img
-                src={product.images[selectedImage]}
+                src={product.images?.[selectedImage] || Image.src}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
@@ -96,42 +132,46 @@ function ProductDetailsContent({ id }: { id: string }) {
               <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
               <div>
                 <span className="text-2xl font-semibold">
-                  ${product.price.toFixed(2)}
+                  £{product.price.toFixed(2)}
                 </span>
               </div>
             </div>
-            <div>
-              <h3 className="font-medium mb-2">Color</h3>
-              <div className="flex gap-2">
-                {product.colors.map((color: string, index: number) => (
-                  <button
-                    key={index}
-                    className={`w-12 h-12 rounded-full border-2 ${
-                      selectedColor === index
-                        ? "border-black"
-                        : "border-gray-300"
-                    }`}
-                    style={{ backgroundColor: color }}
-                    onClick={() => setSelectedColor(index)}
-                  />
-                ))}
+            {product.colors && product.colors.length > 0 && (
+              <div>
+                <h3 className="font-medium mb-2">Color</h3>
+                <div className="flex gap-2">
+                  {product.colors.map((color: string, index: number) => (
+                    <button
+                      key={index}
+                      className={`w-12 h-12 rounded-full border-2 ${
+                        selectedColor === index
+                          ? "border-black"
+                          : "border-gray-300"
+                      }`}
+                      style={{ backgroundColor: color }}
+                      onClick={() => setSelectedColor(index)}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-            <div>
-              <h3 className="font-medium mb-2">Size</h3>
-              <div className="flex gap-2">
-                {product.sizes.map((size: string, index: string) => (
-                  <Button
-                    key={index}
-                    className={`w-12 h-12`}
-                    variant={selectedSize === size ? "default" : "outline"}
-                    onClick={() => setSelectedSize(size)}
-                  >
-                    {size}
-                  </Button>
-                ))}
+            )}
+            {product.sizes && product.sizes.length > 0 && (
+              <div>
+                <h3 className="font-medium mb-2">Size</h3>
+                <div className="flex gap-2">
+                  {product.sizes.map((size: string, index: number) => (
+                    <Button
+                      key={index}
+                      className={`w-12 h-12`}
+                      variant={selectedSize === size ? "default" : "outline"}
+                      onClick={() => setSelectedSize(size)}
+                    >
+                      {size}
+                    </Button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
             <div>
               <h3 className="font-medium mb-2">Quantity</h3>
               <div className="flex items-center gap-2">

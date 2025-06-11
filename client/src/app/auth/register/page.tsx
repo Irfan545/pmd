@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { use, useEffect, useState } from "react";
-import banner from "../../../../public/images/banner.jpg";
+import banner from "../../../../public/images/login_banner.jpg";
 import logo from "../../../../public/images/logo.png";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -41,20 +41,15 @@ const RegisterPage = () => {
       toast(checkValidation.error, {
         className: "bg-red-500 text-white",
       });
-      const userId = await register(
+      const success = await register(
         formData.name,
         formData.email,
         formData.password
       );
-      if (userId) {
+      if (success) {
         toast("Account created successfully");
+        router.push("/auth/login");
       }
-      // else {
-      //   toast("User Already Exist. Please login");
-      // }
-
-      if (userId) router.push("/auth/login");
-
       return;
     }
   };

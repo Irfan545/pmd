@@ -1,5 +1,5 @@
 import { API_ROUTES } from "@/utils/api";
-import axios from "axios";
+import axiosInstance from "@/utils/api";
 import { create } from "zustand";
 
 interface FeatureBanner {
@@ -8,10 +8,13 @@ interface FeatureBanner {
 }
 
 interface FeaturedProduct {
-  id: string;
+  id: number;
   name: string;
-  price: string;
+  price: number;
   images: string[];
+  brand?: { name: string };
+  model?: { name: string };
+  category?: { name: string };
 }
 
 interface SettingsState {
@@ -33,10 +36,12 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   fetchBanners: async () => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.get(`${API_ROUTES.SETTINGS}/get-banners`, {
-        withCredentials: true,
-      });
-      set({ banners: response.data.banners, isLoading: false });
+      const response = await axiosInstance.get(API_ROUTES.SETTINGS.FETCH_BANNERS);
+      if (response.data.success) {
+        set({ banners: response.data.banners, isLoading: false });
+      } else {
+        throw new Error(response.data.message || 'Failed to fetch banners');
+      }
     } catch (e) {
       console.error(e);
       set({ error: "Failed to fetch banners", isLoading: false });
@@ -45,19 +50,19 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   fetchFeaturedProducts: async () => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.get(
-        `${API_ROUTES.SETTINGS}/fetch-feature-products`,
-        {
-          withCredentials: true,
-        }
-      );
-      set({
-        featuredProducts: response.data.featuredProducts,
-        isLoading: false,
-      });
+      const response = await axiosInstance.get(API_ROUTES.SETTINGS.FETCH_FEATURED_PRODUCTS);
+      console.log('Featured products response:', response.data);
+      if (response.data.success && Array.isArray(response.data.featuredProducts)) {
+        set({
+          featuredProducts: response.data.featuredProducts,
+          isLoading: false,
+        });
+      } else {
+        throw new Error('Invalid response format');
+      }
     } catch (e) {
       console.error(e);
-      set({ error: "Failed to fetch banners", isLoading: false });
+      set({ error: "Failed to fetch featured products", isLoading: false });
     }
   },
   addBanners: async (files: File[]) => {
@@ -65,11 +70,10 @@ export const useSettingsStore = create<SettingsState>((set) => ({
     try {
       const formData = new FormData();
       files.forEach((file) => formData.append("images", file));
-      const response = await axios.post(
-        `${API_ROUTES.SETTINGS}/banners`,
+      const response = await axiosInstance.post(
+        API_ROUTES.SETTINGS.ADD_BANNERS,
         formData,
         {
-          withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -82,18 +86,16 @@ export const useSettingsStore = create<SettingsState>((set) => ({
       return response.data.success;
     } catch (e) {
       console.error(e);
-      set({ error: "Failed to fetch banners", isLoading: false });
+      set({ error: "Failed to add banners", isLoading: false });
+      return false;
     }
   },
   updateFeaturedProducts: async (productIds: string[]) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.post(
-        `${API_ROUTES.SETTINGS}/update-feature-products`,
-        { productIds },
-        {
-          withCredentials: true,
-        }
+      const response = await axiosInstance.post(
+        API_ROUTES.SETTINGS.UPDATE_FEATURED_PRODUCTS,
+        { productIds }
       );
       set({
         isLoading: false,
@@ -101,7 +103,8 @@ export const useSettingsStore = create<SettingsState>((set) => ({
       return response.data.success;
     } catch (e) {
       console.error(e);
-      set({ error: "Failed to fetch banners", isLoading: false });
+      set({ error: "Failed to update featured products", isLoading: false });
+      return false;
     }
   },
 }));

@@ -1,10 +1,10 @@
 import express from "express";
-import { authenticateJwt, isSuperAdmin } from "../middleware/authMiddleware";
+import { authJWT, isSuperAdmin } from "../middleware/authMiddleware";
 import { upload } from "../middleware/uploadMiddleware";
 import {
   addFeatureBanners,
   fetchFeatureBanners,
-  getFeaturedProducts,
+  fetchFeaturedProducts,
   updateFeaturedProducts,
 } from "../controllers/settingsController";
 
@@ -12,19 +12,19 @@ const router = express.Router();
 
 router.post(
   "/banners",
-  authenticateJwt,
+  authJWT,
   isSuperAdmin,
   upload.array("images", 5),
   addFeatureBanners
 );
 
-router.get("/get-banners", authenticateJwt, fetchFeatureBanners);
+router.get("/banners", authJWT, fetchFeatureBanners);
 router.post(
   "/update-feature-products",
-  authenticateJwt,
+  authJWT,
   isSuperAdmin,
   updateFeaturedProducts
 );
-router.get("/fetch-feature-products", authenticateJwt, getFeaturedProducts);
+router.get("/fetch-feature-products", authJWT, fetchFeaturedProducts);
 
 export default router;

@@ -1,21 +1,20 @@
+
 import type { Metadata } from "next";
 import { Oswald, Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import CommonLayout from "@/components/common/layout";
+import AuthProvider from "@/components/providers/AuthProvider";
 
 const oswald = Oswald({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   variable: "--font-oswald",
-  display: "swap",
 });
 
 const roboto = Roboto({
-  subsets: ["latin"],
   weight: ["400", "500", "700"],
+  subsets: ["latin"],
   variable: "--font-roboto",
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,14 +24,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={`${oswald.variable} ${roboto.variable}`}>
-      <body className={`${roboto.className} antialiased`}>
-        <CommonLayout>{children}</CommonLayout>
-        <Toaster />
+      <body>
+        {/* <AuthProvider> */}
+          <CommonLayout>{children}</CommonLayout>
+          <Toaster />
+        {/* </AuthProvider> */}
       </body>
     </html>
   );

@@ -56,15 +56,15 @@ export const fetchFeatureBanners = async (
   req: AuthRequest,
   res: Response
 ): Promise<void> => {
-  const banners = await prisma.featureBanner.findMany({
-    orderBy: { createdAt: "desc" },
-  });
-
-  res.status(200).json({
-    success: true,
-    banners,
-  });
   try {
+    const banners = await prisma.featureBanner.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+
+    res.status(200).json({
+      success: true,
+      banners,
+    });
   } catch (e) {
     console.error(e);
     res.status(500).json({

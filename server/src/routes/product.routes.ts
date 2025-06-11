@@ -9,6 +9,12 @@ import { searchProducts, fetchProductsByCategory } from '../controllers/productC
 const router = Router();
 const prisma = new PrismaClient();
 
+// Add search route first
+router.get('/search', searchProducts as RequestHandler);
+
+// Add route for fetching products by category
+router.get('/category/:id', fetchProductsByCategory as RequestHandler);
+
 // Get all products with pagination and filters
 const getAllProducts: RequestHandler = async (req, res) => {
   try {
@@ -259,10 +265,52 @@ router.post(
   uploadImagesByPartNumber
 );
 
-// Add route for fetching products by category
-router.get('/category/:id', fetchProductsByCategory as RequestHandler);
+// Get products by category
+const getProductsByCategory: RequestHandler = async (req, res) => {
+  try {
+    const { categoryId } = req.params;
+    const { 
+      page = '1', 
+      limit = '20',
+      sortBy = 'createdAt',
+      sortOrder = 'desc'
+    } = req.query;
 
-// Add search route
-router.get('/search', searchProducts as RequestHandler);
+    const skip = (parseInt(page as string) - 1) * parseInt(limit as string);
+    
+    const products = await prisma.product.findMany({
+      where: {
+        categoryId: parseInt(categoryId)
+      },
+      include: {
+        brand: true,
+        model: true,
+        category: true
+      },
+      orderBy: {
+        [sortBy as string]: sortOrder
+      },
+      skip,
+      take: parseInt(limit as string)
+    });
+    
+    const total = await prisma.product.count({
+      where: {
+        categoryId: parseInt(categoryId)
+      }
+    });
+    
+    res.json({
+      products,
+      total,
+      totalPages: Math.ceil(total / parseInt(limit as string))
+    });
+  } catch (error) {
+    console.error('Error fetching products by category:', error);
+    res.status(500).json({ error: 'Failed to fetch products by category' });
+  }
+};
+
+router.get('/category/:categoryId', getProductsByCategory);
 
 export default router;

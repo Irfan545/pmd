@@ -19,6 +19,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Address, useAddressStore } from "@/store/useAddressStore";
 import { useOrderStore } from "@/store/useOrderStore";
 import { useEffect, useState } from "react";
+import { useAuthStore } from "@/store/useAuthStore";
+import { useRouter } from "next/navigation";
 
 const initialAddressFormState = {
   name: "",
@@ -31,6 +33,9 @@ const initialAddressFormState = {
 };
 
 function UserAccountPage() {
+  const router = useRouter();
+  const { user } = useAuthStore();
+  const [isClient, setIsClient] = useState(false);
   const {
     isLoading: addressesLoading,
     addresses,
@@ -47,9 +52,20 @@ function UserAccountPage() {
   const { userOrders, getOrdersByUserId, isLoading } = useOrderStore();
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+    
+    if (!user) {
+      router.push('/auth/login');
+      return;
+    }
+
     fetchAddresses();
     getOrdersByUserId();
-  }, [fetchAddresses, getOrdersByUserId]);
+  }, [fetchAddresses, getOrdersByUserId, isClient, user, router]);
 
   console.log(userOrders, "userOrders");
 

@@ -355,11 +355,32 @@ export const uploadImagesByPartNumber = async (
 
 export const searchProducts = async (req: Request, res: Response) => {
   try {
-    const { page = '1', limit = '20', sortBy = 'createdAt', sortOrder = 'desc' } = req.query;
+    const { search, page = '1', limit = '20', sortBy = 'createdAt', sortOrder = 'desc' } = req.query;
+
+    console.log('Search request received:', { search, page, limit, sortBy, sortOrder });
 
     const skip = (parseInt(page as string) - 1) * parseInt(limit as string);
 
+    const where: any = {};
+    
+    if (search) {
+      where.OR = [
+        { name: { contains: search as string, mode: 'insensitive' } },
+        { description: { contains: search as string, mode: 'insensitive' } },
+        {
+          partNumbers: {
+            some: {
+              number: { contains: search as string, mode: 'insensitive' }
+            }
+          }
+        }
+      ];
+    }
+
+    console.log('Search query:', where);
+
     const products = await prisma.product.findMany({
+      where,
       include: { 
         brand: true, 
         model: true, 
@@ -371,7 +392,9 @@ export const searchProducts = async (req: Request, res: Response) => {
       orderBy: { [sortBy as string]: sortOrder },
     });
 
-    const total = await prisma.product.count();
+    console.log('Found products:', products.length);
+
+    const total = await prisma.product.count({ where });
 
     res.json({
       products,

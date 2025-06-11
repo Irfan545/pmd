@@ -5,9 +5,9 @@ services:
     image: postgres:13
     restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: nextecommerce
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: AI_DB
     ports:
       - '5436:5432'
     volumes:
