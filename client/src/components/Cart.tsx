@@ -98,7 +98,7 @@ export function Cart() {
           <div key={item.id} className="flex items-center gap-4 p-4 border rounded">
             <div className="relative w-24 h-24">
               <Image
-                src={item.image || "/placeholder.png"}
+                src={item.image || "/placeholder.svg"}
                 alt={item.name}
                 fill
                 className="object-cover"
@@ -107,8 +107,8 @@ export function Cart() {
             <div className="flex-1">
               <h3 className="font-medium">{item.name}</h3>
               <p className="text-gray-500">£{item.price.toFixed(2)}</p>
-              {item.color && <p className="text-sm">Color: {item.color}</p>}
-              {item.size && <p className="text-sm">Size: {item.size}</p>}
+              {/* {item.color && <p className="text-sm">Color: {item.color}</p>}
+              {item.size && <p className="text-sm">Size: {item.size}</p>} */}
               <div className="flex items-center gap-2 mt-2">
                 <Button
                   variant="outline"

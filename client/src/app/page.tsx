@@ -1,6 +1,7 @@
 "use client";
 
 import SearchBar from "@/components/common/SearchBar";
+import CategoriesSidebar from "@/components/common/CategoriesSidebar";
 import Categories from "@/components/dashboard/category";
 import { Button } from "@/components/ui/button";
 import { useCategoryStore } from "@/store/useCategoryStore";
@@ -40,7 +41,7 @@ const gridItems = [
 function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { banners, featuredProducts, fetchFeaturedProducts, fetchBanners } = useSettingsStore();
-  const { categories, fetchCategories } = useCategoryStore();
+  const { categories, fetchCategories, loading: categoriesLoading } = useCategoryStore();
   const router = useRouter();
 
   // Memoize the fetch functions to prevent unnecessary re-renders
@@ -122,37 +123,59 @@ function HomePage() {
           </div>
         </section>
 
+        {/* Categories section */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-center text-3xl font-semibold mb-2">
+              Browse by Category
+            </h2>
+            <p className="text-center text-gray-500 mb-8">
+              Find the parts you need by category
+            </p>
+            <div className="max-w-4xl mx-auto">
+              <CategoriesSidebar 
+                categories={categories} 
+                onCategorySelect={handleCategorySelect}
+                loading={categoriesLoading}
+                title=""
+                variant="list"
+                showTitle={false}
+                className="bg-white shadow-lg rounded-lg"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* grid section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-center text-3xl font-semibold mb-2">
-              OUR PRODUCTS
-            </h2>
+            Buy car parts online            </h2>
             <p className="text-center text-gray-500 mb-8">
               Tested. Trusted. Delivered. The parts your car depends on.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {gridItems.map((gridItem, index) => (
-                <div key={index} className="relative group overflow-hidden">
-                  <div className="aspect-[3/4]">
+                <div key={index} className="relative group overflow-hidden cursor-pointer" onClick={() => router.push('/listing')}>
+                  <div className="aspect-[5/4]">
                     <img
                       src={gridItem.image}
                       alt={gridItem.title}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-center opacity-100 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="text-center text-white p-4">
                       <h3 className="text-xl font-semibold mb-2">
                         {gridItem.title}
                       </h3>
                       <p className="text-sm">{gridItem.subtitle}</p>
-                      <Button 
+                      {/* <Button 
                         className="mt-4 bg-white text-black hover:bg-gray-100"
                         onClick={() => router.push('/listing')}
                       >
                         SHOP NOW
-                      </Button>
+                      </Button> */}
                     </div>
                   </div>
                 </div>
@@ -164,11 +187,11 @@ function HomePage() {
         {/* Feature products section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-center text-3xl font-semibold mb-2">
-              NEW ARRIVALS
+            <h2 className="text-center text-2xl font-semibold mb-2">
+             Our Best sellers: buy auto car parts online at a good price
             </h2>
             <p className="text-center text-gray-500 mb-8">
-              Shop our new arrivals from established brands
+              Shop our best sellers from established brands
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {featuredProducts.map((productItem) => {
@@ -208,6 +231,10 @@ function HomePage() {
               })}
             </div>
           </div>
+        </section>
+
+        <section className="py-16">
+
         </section>
       </div>
     </>

@@ -4,14 +4,15 @@ import { NextFunction, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { prisma } from "../app";
 
-const PAYPAL_CLIENT_ID =
-  "AYYtmQuBVHm_q4fO-nRv84xIKhQk1-BdhSLckYRxcBJLhxI5EcxafPKdkvKpqLDP-pNLNXalxvlUSgZE";
-const PAYPAL_CLIENT_SECRET =
-  "EH6X0HMUA-0gB0Z1m8fq_p-YTy1dDLZT7Zs-Q8VcuX33xJN9RID883YWb38JSMwz88t2grJNwKR5ct_W";
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
+const PAYPAL_BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://api-m.paypal.com' 
+  : 'https://api-m.sandbox.paypal.com';
 
 async function getPaypalAccessToken() {
   const response = await axios.post(
-    "https://api-m.sandbox.paypal.com/v1/oauth2/token",
+    `${PAYPAL_BASE_URL}/v1/oauth2/token`,
     "grant_type=client_credentials",
     {
       headers: {
@@ -40,7 +41,7 @@ export const createPaypalOrder = async (
       description: item.description || "",
       sku: item.id,
       unit_amount: {
-        currency_code: "USD",
+        currency_code: "GBP",
         value: item.price.toFixed(2),
       },
       quantity: item.quantity.toString(),
@@ -54,17 +55,17 @@ export const createPaypalOrder = async (
     );
 
     const response = await axios.post(
-      "https://api-m.sandbox.paypal.com/v2/checkout/orders",
+      `${PAYPAL_BASE_URL}/v2/checkout/orders`,
       {
         intent: "CAPTURE",
         purchase_units: [
           {
             amount: {
-              currency_code: "USD",
+              currency_code: "GBP",
               value: total.toFixed(2),
               breakdown: {
                 item_total: {
-                  currency_code: "USD",
+                  currency_code: "GBP",
                   value: itemTotal.toFixed(2),
                 },
               },
@@ -101,7 +102,7 @@ export const capturePaypalOrder = async (
     const accessToken = await getPaypalAccessToken();
 
     const response = await axios.post(
-      `https://api-m.sandbox.paypal.com/v2/checkout/orders/${orderId}/capture`,
+      `${PAYPAL_BASE_URL}/v2/checkout/orders/${orderId}/capture`,
       {},
       {
         headers: {
@@ -158,8 +159,7 @@ export const createFinalOrder = async (
               productName: item.productName,
               productCategory: item.productCategory,
               quantity: item.quantity,
-              size: item.size,
-              color: item.color,
+              partNumber: item.partNumber,
               price: item.price,
             })),
           },

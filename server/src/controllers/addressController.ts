@@ -1,9 +1,9 @@
 import { Response } from "express";
-import { AuthenticatedRequest } from "../middleware/authMiddleware";
-import { prisma } from "../server";
+import { AuthRequest } from "../middleware/authMiddleware";
+import { prisma } from "../app";
 
 export const createAddress = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response
 ): Promise<void> => {
   const userId = req.user?.userId;
@@ -55,7 +55,7 @@ export const createAddress = async (
 };
 
 export const getAddresses = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response
 ): Promise<void> => {
   try {
@@ -87,7 +87,7 @@ export const getAddresses = async (
 };
 
 export const updateAddress = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response
 ): Promise<void> => {
   try {
@@ -103,7 +103,7 @@ export const updateAddress = async (
     }
 
     const existingAddress = await prisma.address.findFirst({
-      where: { id, userId },
+      where: { id: parseInt(id), userId },
     });
 
     if (!existingAddress) {
@@ -128,7 +128,7 @@ export const updateAddress = async (
     }
 
     const updatedAddress = await prisma.address.update({
-      where: { id },
+      where: { id: parseInt(id) },
       data: {
         name,
         address,
@@ -153,7 +153,7 @@ export const updateAddress = async (
 };
 
 export const deleteAddress = async (
-  req: AuthenticatedRequest,
+  req: AuthRequest,
   res: Response
 ): Promise<void> => {
   try {
@@ -169,7 +169,7 @@ export const deleteAddress = async (
     }
 
     const existingAddress = await prisma.address.findFirst({
-      where: { id, userId },
+      where: { id: parseInt(id), userId },
     });
 
     if (!existingAddress) {
@@ -182,7 +182,7 @@ export const deleteAddress = async (
     }
 
     await prisma.address.delete({
-      where: { id },
+      where: { id: parseInt(id) },
     });
 
     res.status(200).json({

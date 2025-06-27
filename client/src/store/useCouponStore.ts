@@ -5,11 +5,11 @@ import { create } from "zustand";
 export interface Coupon {
   id: string;
   code: string;
-  discountPercent: number;
+  discount: number;
   startDate: string;
   endDate: string;
-  usageLimit: number;
-  usageCount: number;
+  userLimit: number | null;
+  userCount: number | null;
 }
 
 interface CouponStore {
@@ -18,7 +18,7 @@ interface CouponStore {
   error: string | null;
   fetchCoupons: () => Promise<void>;
   createCoupon: (
-    coupon: Omit<Coupon, "id" | "usageCount">
+    coupon: Omit<Coupon, "id" | "userCount">
   ) => Promise<Coupon | null>;
   deleteCoupon: (id: string) => Promise<boolean>;
 }
@@ -31,7 +31,7 @@ export const useCouponStore = create<CouponStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axios.get(
-        `${API_ROUTES.COUPON}/fetch-all-coupons`,
+        `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.COUPON.FETCH_ALL}`,
         { withCredentials: true }
       );
       set({ couponList: response.data.couponList, isLoading: false });
@@ -43,7 +43,7 @@ export const useCouponStore = create<CouponStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axios.post(
-        `${API_ROUTES.COUPON}/create-coupon`,
+        `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.COUPON.CREATE}`,
         coupon,
         { withCredentials: true }
       );
@@ -58,7 +58,7 @@ export const useCouponStore = create<CouponStore>((set, get) => ({
   deleteCoupon: async (id: string) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.delete(`${API_ROUTES.COUPON}/${id}`, {
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.COUPON.BASE}/${id}`, {
         withCredentials: true,
       });
       set({ isLoading: false });

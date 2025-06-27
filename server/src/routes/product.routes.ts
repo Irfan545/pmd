@@ -15,6 +15,33 @@ router.get('/search', searchProducts as RequestHandler);
 // Add route for fetching products by category
 router.get('/category/:id', fetchProductsByCategory as RequestHandler);
 
+// Get product by ID - this should come before the general route
+const getProductById: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await prisma.product.findUnique({
+      where: { id: parseInt(id) },
+      include: {
+        brand: true,
+        model: true,
+        category: true,
+        compatibleEngine: true
+      }
+    });
+    
+    if (!product) {
+      res.status(404).json({ error: 'Product not found' });
+      return;
+    }
+    
+    res.json(product);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch product' });
+  }
+};
+
+router.get('/:id', getProductById);
+
 // Get all products with pagination and filters
 const getAllProducts: RequestHandler = async (req, res) => {
   try {
@@ -78,6 +105,7 @@ const getAllProducts: RequestHandler = async (req, res) => {
         description: true,
         price: true,
         stock: true,
+        imageUrl: true,
         brand: {
           select: {
             id: true,
@@ -129,32 +157,114 @@ const getAllProducts: RequestHandler = async (req, res) => {
 
 router.get('/', getAllProducts);
 
-// Get product by ID
-const getProductById: RequestHandler = async (req, res) => {
+// Admin endpoint to get all products without pagination
+const getAllProductsForAdmin: RequestHandler = async (req, res) => {
   try {
-    const { id } = req.params;
-    const product = await prisma.product.findUnique({
-      where: { id: parseInt(id) },
-      include: {
-        brand: true,
-        model: true,
-        category: true,
-        compatibleEngine: true
+    const { 
+      categoryId,
+      brandId,
+      modelId,
+      search,
+      minPrice,
+      maxPrice,
+      sortBy = 'createdAt',
+      sortOrder = 'desc'
+    } = req.query;
+
+    const where: any = {};
+    
+    // Apply filters
+    if (categoryId) where.categoryId = parseInt(categoryId as string);
+    if (brandId) where.brandId = parseInt(brandId as string);
+    if (modelId) where.modelId = parseInt(modelId as string);
+    if (search) {
+      where.OR = [
+        { name: { contains: search as string, mode: 'insensitive' } },
+        { description: { contains: search as string, mode: 'insensitive' } },
+        {
+          category: {
+            OR: [
+              { name: { contains: search as string, mode: 'insensitive' } },
+              {
+                parent: {
+                  name: { contains: search as string, mode: 'insensitive' }
+                }
+              }
+            ]
+          }
+        },
+        {
+          partNumbers: {
+            some: {
+              number: { contains: search as string, mode: 'insensitive' }
+            }
+          }
+        }
+      ];
+    }
+    if (minPrice || maxPrice) {
+      where.price = {};
+      if (minPrice) where.price.gte = parseFloat(minPrice as string);
+      if (maxPrice) where.price.lte = parseFloat(maxPrice as string);
+    }
+    
+    const products = await prisma.product.findMany({
+      where,
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        price: true,
+        stock: true,
+        imageUrl: true,
+        isFeatured: true,
+        brand: {
+          select: {
+            id: true,
+            name: true
+          }
+        },
+        model: {
+          select: {
+            id: true,
+            name: true
+          }
+        },
+        category: {
+          select: {
+            id: true,
+            name: true,
+            type: true
+          }
+        },
+        partNumbers: {
+          select: {
+            id: true,
+            number: true,
+            type: true,
+            manufacturer: true,
+            isOriginal: true
+          }
+        }
+      },
+      orderBy: {
+        [sortBy as string]: sortOrder
       }
     });
     
-    if (!product) {
-      res.status(404).json({ error: 'Product not found' });
-      return;
-    }
+    const total = await prisma.product.count({ where });
     
-    res.json(product);
+    res.json({
+      products,
+      total
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch product' });
+    console.error('Error fetching all products for admin:', error);
+    res.status(500).json({ error: 'Failed to fetch products' });
   }
 };
 
-router.get('/:id', getProductById);
+router.get('/admin/all', getAllProductsForAdmin);
 
 // Upload images by part number
 const uploadImagesByPartNumber: RequestHandler = async (req, res) => {

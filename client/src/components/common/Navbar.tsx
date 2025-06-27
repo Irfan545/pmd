@@ -43,20 +43,26 @@ const UsefulLinks = () => {
             // icon: <PanelRightClose/>,
             href: "/listing",
         },
-
-        
     ]
     const router = useRouter()
-  return (
-    <div className='flex justify-between items-center text-white py-2 bg-primary px-10'>
-      {Links.map((link) => (
-        <Button variant="ghost" className='text-secondary hover:text-accent hover:bg-transparent' key={link.name} onClick={() => router.push(link.href)}>
-          {/* <Image src={link.icon} alt={link.name} width={20} height={20} /> */}
-          {link.name}
-        </Button>
-      ))}
-    </div>
-  )
+
+    return (
+        <div className='bg-primary'>
+            {/* Scrollable container for mobile, flex for desktop */}
+            <div className='flex overflow-x-auto md:overflow-visible md:justify-between items-center text-white py-2 px-4 md:px-10 scrollbar-hide'>
+                {Links.map((link) => (
+                    <Button 
+                        variant="ghost" 
+                        className='text-secondary hover:text-accent hover:bg-transparent whitespace-nowrap mx-1 md:mx-0' 
+                        key={link.name} 
+                        onClick={() => router.push(link.href)}
+                    >
+                        {link.name}
+                    </Button>
+                ))}
+            </div>
+        </div>
+    )
 }
 
 export default UsefulLinks

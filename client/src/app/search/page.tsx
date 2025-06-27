@@ -66,7 +66,7 @@ const SearchResults = () => {
         search,
         categoryId: category ? parseInt(category) : undefined,
         page: currentPage,
-        limit: 10,
+        limit: 20,
         sortBy: 'createdAt',
         sortOrder: 'desc'
       }).catch(error => {
@@ -79,74 +79,91 @@ const SearchResults = () => {
     setCurrentPage(newPage);
   };
 
+  const handleProductClick = (productId: number) => {
+    router.push(`/listing/${productId}`);
+  };
+
   if (!isClient) {
     return null; // Return null on server-side
   }
 
-  if (loading) return <div className="p-4">Loading...</div>;
-  if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
+  if (loading) return <div className="flex justify-center items-center h-64"><div className="text-lg">Loading...</div></div>;
+  if (error) return <div className="flex justify-center items-center h-64"><div className="text-lg text-red-500">Error: {error}</div></div>;
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="w-full">
       <h1 className="text-2xl font-bold mb-4">
         Search Results for "{searchTerm}"
       </h1>
       {products.length === 0 ? (
-        <div className="text-center text-gray-500">No products found</div>
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg text-gray-500">No products found</div>
+        </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-4">
             {products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-shadow"
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => handleProductClick(product.id)}
               >
                 <div className="p-4">
-                  <img 
-                    src={product?.imageUrl?.[0] || 'https://placehold.co/600x400'} 
-                    alt={product.name} 
-                    className="w-full h-40 object-cover" 
-                  />
-                  <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-                  {product.description && (
-                    <p className="text-gray-600 mb-2">{product.description}</p>
-                  )}
-                  <div className="flex justify-between items-center">
-                    <span className="text-xl font-bold">£{product.price.toFixed(2)}</span>
-                    {product.brand && (
-                      <span className="text-sm text-gray-500">
-                        {typeof product.brand === 'string' ? product.brand : product.brand.name}
-                      </span>
-                    )}
-                  </div>
-                  {product.model && (
-                    <div className="mt-2 text-sm text-gray-500">
-                      Model: {typeof product.model === 'string' ? product.model : product.model.name}
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <img 
+                        src={product?.imageUrl?.[0] || 'https://placehold.co/600x400'} 
+                        alt={product.name} 
+                        className="w-24 h-24 object-cover rounded" 
+                      />
                     </div>
-                  )}
-                  {product.category && (
-                    <div className="mt-2 text-sm text-gray-500">
-                      Category: {typeof product.category === 'string' ? product.category : product.category.name}
-                    </div>
-                  )}
-                  {product.partNumbers && product.partNumbers.length > 0 && (
-                    <div className="mt-2">
-                      <h4 className="text-sm font-semibold mb-1">Part Numbers:</h4>
-                      <div className="space-y-1">
-                        {product.partNumbers.map((partNumber) => (
-                          <div key={partNumber.id} className="text-sm text-gray-600">
-                            <span className="font-medium">{partNumber.number}</span>
-                            {partNumber.type && (
-                              <span className="ml-2 text-gray-500">({partNumber.type})</span>
-                            )}
-                            {partNumber.isOriginal && (
-                              <span className="ml-2 text-green-600">Original</span>
-                            )}
-                          </div>
-                        ))}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
+                      {product.description && (
+                        <p className="text-gray-600 mb-2 text-sm line-clamp-2">{product.description}</p>
+                      )}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                          {product.brand && (
+                            <span>
+                              Brand: {typeof product.brand === 'string' ? product.brand : product.brand.name}
+                            </span>
+                          )}
+                          {product.model && (
+                            <span>
+                              Model: {typeof product.model === 'string' ? product.model : product.model.name}
+                            </span>
+                          )}
+                          {product.category && (
+                            <span>
+                              Category: {typeof product.category === 'string' ? product.category : product.category.name}
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-right">
+                          <span className="text-xl font-bold">£{product.price.toFixed(2)}</span>
+                        </div>
                       </div>
+                      {product.partNumbers && product.partNumbers.length > 0 && (
+                        <div className="mt-2">
+                          <h4 className="text-sm font-semibold mb-1">Part Numbers:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {product.partNumbers.map((partNumber) => (
+                              <div key={partNumber.id} className="text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded">
+                                <span className="font-medium">{partNumber.number}</span>
+                                {partNumber.type && (
+                                  <span className="ml-1 text-gray-500">({partNumber.type})</span>
+                                )}
+                                {partNumber.isOriginal && (
+                                  <span className="ml-1 text-green-600">Original</span>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             ))}

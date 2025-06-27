@@ -20,8 +20,6 @@ interface CartItem {
   name: string;
   price: number;
   image: string;
-  color: string | null;
-  size: string | null;
   quantity: number;
 }
 
@@ -76,7 +74,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
 
     set({ isLoading: true, error: null });
     try {
-      const response = await axiosInstance.post(process.env.NEXT_PUBLIC_API_URL + API_ROUTES.CART.ADD, {
+      const response = await axiosInstance.post(API_ROUTES.CART.ADD, {
         productId,
         quantity,
       });
@@ -107,7 +105,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
 
     set({ isLoading: true, error: null });
     try {
-      const response = await axiosInstance.put(process.env.NEXT_PUBLIC_API_URL + API_ROUTES.CART.UPDATE + `/${itemId}`, {
+      const response = await axiosInstance.put(API_ROUTES.CART.UPDATE + `/${itemId}`, {
         quantity,
       });
 
@@ -137,7 +135,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
 
     set({ isLoading: true, error: null });
     try {
-      const response = await axiosInstance.delete(process.env.NEXT_PUBLIC_API_URL + API_ROUTES.CART.REMOVE + `/${itemId}`);
+      const response = await axiosInstance.delete(API_ROUTES.CART.REMOVE + `/${itemId}`);
 
       if (response.data.success) {
         await get().fetchCart();

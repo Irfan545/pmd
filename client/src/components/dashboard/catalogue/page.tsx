@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useHomePageCategoryStore, HomePageCategory } from "@/store/useHomePageCategoryStore";
-import ProductCard from "./ProductCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const LoadingSkeleton = () => (
   <div className="flex gap-4 p-4">
@@ -16,16 +16,22 @@ const LoadingSkeleton = () => (
       <div className="max-w-md h-10 bg-gray-200 rounded animate-pulse"></div>
       <div className="w-[200px] h-10 bg-gray-200 rounded animate-pulse"></div>
     </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="space-y-4 w-full">
       {[...Array(6)].map((_, i) => (
         <div key={i} className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="h-48 bg-gray-200 animate-pulse"></div>
           <div className="p-4">
-            <div className="h-6 bg-gray-200 rounded animate-pulse mb-2"></div>
-            <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
-            <div className="flex justify-between items-center">
-              <div className="h-6 w-20 bg-gray-200 rounded animate-pulse"></div>
-              <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0">
+                <div className="w-24 h-24 bg-gray-200 animate-pulse rounded"></div>
+              </div>
+              <div className="flex-1">
+                <div className="h-6 bg-gray-200 rounded animate-pulse mb-2"></div>
+                <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                <div className="flex justify-between items-center">
+                  <div className="h-6 w-20 bg-gray-200 rounded animate-pulse"></div>
+                  <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -35,6 +41,7 @@ const LoadingSkeleton = () => (
 );
 
 const Catalogue = () => {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const { 
@@ -53,7 +60,7 @@ const Catalogue = () => {
   useEffect(() => {
     if (selectedCategory) {
       console.log('Selected category changed:', selectedCategory);
-      fetchProductsByCategory(selectedCategory.id, currentPage);
+      fetchProductsByCategory(selectedCategory.id, currentPage, 20);
     } else {
       clearProducts();
     }
@@ -94,6 +101,10 @@ const Catalogue = () => {
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
+  };
+
+  const handleProductClick = (productId: number) => {
+    router.push(`/listing/${productId}`);
   };
 
   if (loading) return <LoadingSkeleton />;
@@ -150,9 +161,53 @@ const Catalogue = () => {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-4">
             {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <div
+                key={product.id}
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => handleProductClick(product.id)}
+              >
+                <div className="p-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <img 
+                        src={product.images?.[0] || 'https://placehold.co/600x400'} 
+                        alt={product.name} 
+                        className="w-24 h-24 object-cover rounded" 
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
+                      {product.description && (
+                        <p className="text-gray-600 mb-2 text-sm line-clamp-2">{product.description}</p>
+                      )}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                          {product.brand && (
+                            <span>
+                              Brand: {typeof product.brand === 'string' ? product.brand : product.brand.name}
+                            </span>
+                          )}
+                          {product.model && (
+                            <span>
+                              Model: {typeof product.model === 'string' ? product.model : product.model.name}
+                            </span>
+                          )}
+                          {product.category && (
+                            <span>
+                              Category: {typeof product.category === 'string' ? product.category : product.category.name}
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-right">
+                          <span className="text-xl font-bold">£{product.price.toFixed(2)}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
 

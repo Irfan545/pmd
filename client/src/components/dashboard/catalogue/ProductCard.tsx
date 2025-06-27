@@ -10,15 +10,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const imageUrl = product?.imageUrl?.[0] || 'https://placehold.co/600x400';
   
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative h-48">
+    <div className="bg-white flex shadow overflow-hidden hover:shadow-lg transition-shadow h-full">
+      <div className="relative w-36 flex-shrink-0">
         <img 
           src={imageUrl}
           alt={product.name}
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="p-4">
+      <div className="p-4 flex-1">
         <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
         {product.description && (
           <p className="text-gray-600 mb-2 line-clamp-2">{product.description}</p>

@@ -17,6 +17,15 @@ const Categories = ({ categories, onCategorySelect }: CategoriesProps) => {
   const { setSelectedCategory } = useHomePageCategoryStore();
   const { products, loading, fetchProductsForClient } = useProductStore();
 
+  // Debug: Log categories structure
+  useEffect(() => {
+    console.log('Categories received in Categories component:', categories);
+    if (categories && categories.length > 0) {
+      console.log('First category structure:', categories[0]);
+      console.log('First category subcategories:', categories[0].subcategories);
+    }
+  }, [categories]);
+
   const toggleCategory = (id: number) => {
     setExpandedIds(prev => {
       const newSet = new Set(prev);
@@ -29,9 +38,9 @@ const Categories = ({ categories, onCategorySelect }: CategoriesProps) => {
     });
   };
 
-  const handleClick = async (id: number, subcategories: HomePageCategory[]) => {
+  const handleClick = async (id: number, subcategories?: HomePageCategory[]) => {
     console.log('Category clicked:', { id, subcategories });
-    if (subcategories.length === 0) {
+    if (!subcategories || subcategories.length === 0) {
       console.log('Fetching products for category:', id);
       try {
         setSelectedCategory({

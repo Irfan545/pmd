@@ -44,14 +44,16 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  // Handle undefined routes
-  const isPublicRoute = publicRoutes.some(route => pathname === route);
-  const isSuperAdminRoute = superAdminRoutes.some(route => pathname.startsWith(route));
-  const isUserRoute = userRoutes.some(route => pathname.startsWith(route));
-  const isPublicUserRoute = publicUserRoutes.some(route => pathname === route || (route !== '/' && pathname.startsWith(route)));
+  // Check if route is valid - if not, let Next.js handle it with not-found.tsx
+  const isValidRoute = 
+    publicRoutes.some(route => pathname === route) ||
+    superAdminRoutes.some(route => pathname.startsWith(route.replace('/:path*', ''))) ||
+    userRoutes.some(route => pathname.startsWith(route)) ||
+    publicUserRoutes.some(route => pathname === route || (route !== '/' && pathname.startsWith(route)));
 
-  if (!isPublicRoute && !isSuperAdminRoute && !isUserRoute && !isPublicUserRoute) {
-    return NextResponse.redirect(new URL('/404', request.url));
+  // If it's not a valid route, let Next.js handle it naturally
+  if (!isValidRoute) {
+    return NextResponse.next();
   }
 
   return NextResponse.next();

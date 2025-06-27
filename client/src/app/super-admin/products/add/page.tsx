@@ -14,7 +14,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useProductStore } from "@/store/useProductStore";
-import { brands, categories, colors, sizes } from "@/utils/config";
+import { brands, categories, sizes, colors } from "@/utils/config";
 import { Upload } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -25,53 +25,71 @@ interface FormState {
   brand: string;
   description: string;
   category: string;
-  gender: string;
   price: string;
   stock: string;
 }
 
 function SuperAdminManageProductPage() {
-  const [formState, setFormState] = useState({
+  const [formState, setFormState] = useState<FormState>({
     name: "",
     brand: "",
     description: "",
     category: "",
-    gender: "",
     price: "",
     stock: "",
   });
-
-  const [selectedSizes, setSelectSizes] = useState<string[]>([]);
-  const [selectedColors, setSelectColors] = useState<string[]>([]);
   const [selectedfiles, setSelectFiles] = useState<File[]>([]);
-  const { toast } = useToast();
+  const [selectedColors, setSelectColors] = useState<string[]>([]);
+  const [selectedSizes, setSelectSizes] = useState<string[]>([]);
+
   const searchParams = useSearchParams();
   const getCurrentEditedProductId = searchParams.get("id");
   const isEditMode = !!getCurrentEditedProductId;
 
   const router = useRouter();
-  const { createProduct, updateProduct, getProductById, isLoading, error } =
+  const { createProduct, updateProduct, fetchProductById, loading, error } =
     useProductStore();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (isEditMode) {
-      getProductById(getCurrentEditedProductId).then((product) => {
-        if (product) {
+      console.log('Fetching product with ID:', getCurrentEditedProductId);
+      fetchProductById(getCurrentEditedProductId).then((product) => {
+        console.log('Received product data:', product);
+        if (product && typeof product === 'object') {
           setFormState({
-            name: product.name,
-            brand: product.brand,
-            description: product.description,
-            category: product.category,
-            gender: product.gender,
-            price: product.price.toString(),
-            stock: product.stock.toString(),
+            name: product.name || "",
+            brand: typeof product.brand === 'object' && product.brand ? product.brand.name : (product.brand || ""),
+            description: product.description || "",
+            category: typeof product.category === 'object' && product.category ? product.category.name : (product.category || ""),
+            price: product.price ? product.price.toString() : "",
+            stock: product.stock ? product.stock.toString() : "",
           });
-          setSelectSizes(product.sizes);
-          setSelectColors(product.colors);
+          // Note: sizes and colors are not part of the current Product interface
+          // These will be empty arrays for now
+          setSelectSizes([]);
+          setSelectColors([]);
+        } else {
+          // Handle case when product is not found
+          console.error('Product is null or invalid:', product);
+          toast({
+            title: "Product not found",
+            description: "The product you're trying to edit could not be found.",
+            variant: "destructive",
+          });
+          router.push("/super-admin/products/list");
         }
+      }).catch((error) => {
+        console.error('Error fetching product:', error);
+        toast({
+          title: "Error loading product",
+          description: "Failed to load product data. Please try again.",
+          variant: "destructive",
+        });
+        router.push("/super-admin/products/list");
       });
     }
-  }, [isEditMode, getCurrentEditedProductId, getProductById]);
+  }, [isEditMode, getCurrentEditedProductId, fetchProductById, toast, router]);
 
   useEffect(() => {
     console.log(getCurrentEditedProductId, "getCurrentEditedProductId");
@@ -82,7 +100,6 @@ function SuperAdminManageProductPage() {
         brand: "",
         description: "",
         category: "",
-        gender: "",
         price: "",
         stock: "",
       });
@@ -151,12 +168,22 @@ function SuperAdminManageProductPage() {
       });
     }
 
-    const result = isEditMode
-      ? await updateProduct(getCurrentEditedProductId, formData)
-      : await createProduct(formData);
-    console.log(result, "result");
-    if (result) {
+    try {
+      if (isEditMode) {
+        await updateProduct(getCurrentEditedProductId, formData);
+      } else {
+        await createProduct(formData);
+      }
+      
+      toast({
+        title: isEditMode ? "Product updated successfully" : "Product created successfully",
+      });
       router.push("/super-admin/products/list");
+    } catch (error) {
+      toast({
+        title: isEditMode ? "Failed to update product" : "Failed to create product",
+        variant: "destructive",
+      });
     }
   };
 
@@ -164,7 +191,7 @@ function SuperAdminManageProductPage() {
     <div className="p-6">
       <div className="flex flex-col gap-6">
         <header className="flex items-center justify-between">
-          <h1>Add Product</h1>
+          <h1>{isEditMode ? "Edit Product" : "Add Product"}</h1>
         </header>
         <form
           onSubmit={handleFormSubmit}
@@ -263,58 +290,6 @@ function SuperAdminManageProductPage() {
               </Select>
             </div>
             <div>
-              <Label>Gender</Label>
-              <Select
-                value={formState.gender}
-                onValueChange={(value) => handleSelectChange("gender", value)}
-                name="gender"
-              >
-                <SelectTrigger className="mt-1.5">
-                  <SelectValue placeholder="Select Gender" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="men">Men</SelectItem>
-                  <SelectItem value="women">Women</SelectItem>
-                  <SelectItem value="kids">Kids</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label>Size</Label>
-              <div className="mt-1.5 flex flex-wrap gap-2">
-                {sizes.map((item) => (
-                  <Button
-                    onClick={() => handleToggleSize(item)}
-                    variant={
-                      selectedSizes.includes(item) ? "default" : "outline"
-                    }
-                    key={item}
-                    type="button"
-                    size={"sm"}
-                  >
-                    {item}
-                  </Button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <Label>Colors</Label>
-              <div className="mt-1.5 flex flex-wrap gap-2">
-                {colors.map((color) => (
-                  <Button
-                    key={color.name}
-                    type="button"
-                    className={`h-8 w-8 rounded-full ${color.class} ${
-                      selectedColors.includes(color.name)
-                        ? "ring-2 ring-primary ring-offset-2"
-                        : ""
-                    }`}
-                    onClick={() => handleToggleColor(color.name)}
-                  />
-                ))}
-              </div>
-            </div>
-            <div>
               <Label>Product Price</Label>
               <Input
                 name="price"
@@ -335,11 +310,11 @@ function SuperAdminManageProductPage() {
               />
             </div>
             <Button
-              disabled={isLoading}
+              disabled={loading}
               type="submit"
               className="mt-1.5 w-full"
             >
-              {isLoading ? "Creating..." : "Create"}
+              {loading ? (isEditMode ? "Updating..." : "Creating...") : (isEditMode ? "Update Product" : "Create Product")}
             </Button>
           </div>
         </form>

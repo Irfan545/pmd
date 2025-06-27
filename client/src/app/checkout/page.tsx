@@ -5,8 +5,7 @@ import CheckoutSuspense from "./checkoutSkeleton";
 
 function CheckoutPage() {
   const options = {
-    clientId:
-      "AYYtmQuBVHm_q4fO-nRv84xIKhQk1-BdhSLckYRxcBJLhxI5EcxafPKdkvKpqLDP-pNLNXalxvlUSgZE",
+    clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
   };
 
   return (

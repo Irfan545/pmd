@@ -11,6 +11,8 @@ import homeCategoryRoutes from './routes/HomeCategories.routes';
 import settingsRoutes from './routes/settings.routes';
 import cartRoutes from './routes/cartRoutes';
 import orderRoutes from './routes/orderRoutes';
+import couponRoutes from './routes/couponRoutes';
+import addressRoutes from './routes/addressRoutes';
 
 // Load environment variables
 dotenv.config();
@@ -38,6 +40,8 @@ app.use('/api/home-categories', homeCategoryRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/coupon', couponRoutes);
+app.use('/api/address', addressRoutes);
 
 // Health check route
 app.get('/', (req, res) => {

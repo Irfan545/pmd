@@ -14,8 +14,6 @@ type CartItem = {
   cartId: number;
   productId: number;
   quantity: number;
-  color: string | null;
-  size: string | null;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -34,7 +32,9 @@ export const addToCart = async (
 ): Promise<void> => {
   try {
     const userId = req.user?.userId;
-    const { productId, quantity, size, color } = req.body;
+    const { productId, quantity } = req.body;
+
+    console.log('Add to cart request:', { userId, productId, quantity });
 
     if (!userId) {
       res.status(401).json({
@@ -51,13 +51,13 @@ export const addToCart = async (
       update: {},
     }) as Cart;
 
+    console.log('Cart found/created:', cart);
+
     const cartItem = await (prisma as any).cartItem.upsert({
       where: {
-        cartId_productId_size_color: {
+        cartId_productId: {
           cartId: cart.id,
           productId,
-          size: size || null,
-          color: color || null,
         },
       },
       update: {
@@ -67,10 +67,10 @@ export const addToCart = async (
         cartId: cart.id,
         productId,
         quantity,
-        size,
-        color,
       },
     }) as CartItem;
+
+    console.log('Cart item created/updated:', cartItem);
 
     const product = await prisma.product.findUnique({
       where: { id: productId },
@@ -81,14 +81,14 @@ export const addToCart = async (
       },
     });
 
+    console.log('Product found:', product);
+
     const responseItem = {
       id: cartItem.id,
       productId: cartItem.productId,
       name: product?.name,
       price: product?.price,
       image: product?.imageUrl[0],
-      color: cartItem.color,
-      size: cartItem.size,
       quantity: cartItem.quantity,
     };
 
@@ -97,6 +97,7 @@ export const addToCart = async (
       data: responseItem,
     });
   } catch (e) {
+    console.error('Add to cart error:', e);
     res.status(500).json({
       success: false,
       message: "Some error occured!",
@@ -151,8 +152,6 @@ export const getCart = async (
           name: product?.name,
           price: product?.price,
           image: product?.imageUrl[0],
-          color: item.color,
-          size: item.size,
           quantity: item.quantity,
         };
       })
@@ -247,8 +246,6 @@ export const updateCartItemQuantity = async (
       name: product?.name,
       price: product?.price,
       image: product?.imageUrl[0],
-      color: updatedItem.color,
-      size: updatedItem.size,
       quantity: updatedItem.quantity,
     };
 

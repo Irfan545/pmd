@@ -72,11 +72,11 @@ function SuperAdminCouponsListingPage() {
                   <p className="font-semibold">{coupon.code}</p>
                 </TableCell>
                 <TableCell>
-                  <p>{coupon.discountPercent}%</p>
+                  <p>{coupon.discount}%</p>
                 </TableCell>
                 <TableCell>
                   <p>
-                    {coupon.usageCount}/{coupon.usageLimit}
+                    {coupon.userCount || 0}/{coupon.userLimit || '∞'}
                   </p>
                 </TableCell>
                 <TableCell>

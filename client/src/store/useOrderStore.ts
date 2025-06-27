@@ -90,7 +90,7 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axios.post(
-        `${API_ROUTES.ORDER}/create-paypal-order`,
+        `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.ORDER.CREATE_PAYPAL_ORDER}`,
         { items, total },
         { withCredentials: true }
       );
@@ -105,7 +105,7 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     set({ isLoading: true, error: null, isPaymentProcessing: true });
     try {
       const response = await axios.post(
-        `${API_ROUTES.ORDER}/capture-paypal-order`,
+        `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.ORDER.CAPTURE_PAYPAL_ORDER}`,
         { orderId },
         { withCredentials: true }
       );
@@ -124,7 +124,7 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     set({ isLoading: true, error: null, isPaymentProcessing: true });
     try {
       const response = await axios.post(
-        `${API_ROUTES.ORDER}/create-final-order`,
+        `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.ORDER.CREATE}`,
         orderData,
         { withCredentials: true }
       );
@@ -147,7 +147,7 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       await axios.put(
-        `${API_ROUTES.ORDER}/${orderId}/status`,
+        `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.ORDER.UPDATE_STATUS}/${orderId}/status`,
         { status },
         { withCredentials: true }
       );
@@ -179,7 +179,7 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axios.get(
-        `${API_ROUTES.ORDER}/get-all-orders-for-admin`,
+        `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.ORDER.GET_ALL_FOR_ADMIN}`,
         { withCredentials: true }
       );
       set({ isLoading: false, adminOrders: response.data });
@@ -193,13 +193,14 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axios.get(
-        `${API_ROUTES.ORDER}/get-order-by-user-id`,
+        `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.ORDER.GET_USER_ORDERS}`,
         { withCredentials: true }
       );
       set({ isLoading: false, userOrders: response.data });
       return response.data;
     } catch (error) {
-      set({ error: "Failed to fetch all orders for admin", isLoading: false });
+      console.error("Order fetch error:", error);
+      set({ error: "Failed to fetch orders", isLoading: false });
       return null;
     }
   },
@@ -208,7 +209,7 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axios.get(
-        `${API_ROUTES.ORDER}/get-single-order/${orderId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.ORDER.GET_ONE}/${orderId}`,
         { withCredentials: true }
       );
       set({ isLoading: false, currentOrder: response.data });

@@ -18,8 +18,9 @@ export interface Product {
   carBrand: string;
   carModel: string;
   engineType: string;
-  images: string[];
+  images?: string[];
   colors: string[];
+  isFeatured?: boolean;
   partNumbers?: {
     id: number;
     number: string;
@@ -143,16 +144,31 @@ export const useProductStore = create<ProductState>((set, get) => ({
   },
 
   fetchAllProductsForAdmin: async () => {
+    console.log('Fetching admin products...');
     set({ loading: true, error: null });
     try {
-      const response = await axios.get(
-        process.env.NEXT_PUBLIC_API_URL + `${API_ROUTES.PRODUCTS}/fetch-admin-products`,
-        {
-          withCredentials: true,
-        }
-      );
-      set({ products: response.data, loading: false });
+      const url = `${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.PRODUCTS.FETCH_ALL_ADMIN}`;
+      console.log('Making request to:', url);
+      
+      const response = await axios.get(url, {
+        withCredentials: true,
+      });
+      
+      console.log('Response received:', response.data);
+      
+      // Handle both array and paginated response formats
+      const productsData = response.data.products || response.data;
+      console.log('Products data:', productsData);
+      
+      // Add computed images field for backward compatibility
+      const productsWithImages = productsData.map((product: any) => ({
+        ...product,
+        images: product.imageUrl || []
+      }));
+      
+      set({ products: productsWithImages, loading: false });
     } catch (error) {
+      console.error('Error fetching admin products:', error);
       set({ error: "Failed to fetch products", loading: false });
     }
   },
@@ -206,11 +222,17 @@ export const useProductStore = create<ProductState>((set, get) => ({
   },
 
   fetchProductById: async (id: string) => {
+    console.log('Fetching product by ID:', id);
     set({ loading: true, error: null });
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${API_ROUTES.PRODUCTS.FETCH_ONE}/${id}`, {
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`;
+      console.log('Making request to:', url);
+      
+      const response = await axios.get(url, {
         withCredentials: true
       });
+      
+      console.log('Product response:', response.data);
       set({ loading: false });
       return response.data;
     } catch (error) {

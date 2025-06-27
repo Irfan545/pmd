@@ -11,13 +11,22 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "@/hooks/use-toast";
 import { useAddressStore } from "@/store/useAddressStore";
 import { useAuthStore } from "@/store/useAuthStore";
-import { CartItem, useCartStore } from "@/store/useCartStore";
+import { useCartStore } from "@/store/useCartStore";
 import { Coupon, useCouponStore } from "@/store/useCouponStore";
 import { useOrderStore } from "@/store/useOrderStore";
 import { useProductStore } from "@/store/useProductStore";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+interface CartItem {
+  id: number;
+  productId: number;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
 
 function CheckoutContent() {
   const { addresses, fetchAddresses } = useAddressStore();
@@ -31,7 +40,7 @@ function CheckoutContent() {
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
   const [couponAppliedError, setCouponAppliedError] = useState("");
   const { items, fetchCart, clearCart } = useCartStore();
-  const { getProductById } = useProductStore();
+  const { fetchProductById } = useProductStore();
   const { fetchCoupons, couponList } = useCouponStore();
   const {
     createPayPalOrder,
@@ -60,7 +69,7 @@ function CheckoutContent() {
     const fetchIndividualProductDetails = async () => {
       const itemsWithDetails = await Promise.all(
         items.map(async (item) => {
-          const product = await getProductById(item.productId);
+          const product = await fetchProductById(item.productId.toString());
           return { ...item, product };
         })
       );
@@ -69,7 +78,7 @@ function CheckoutContent() {
     };
 
     fetchIndividualProductDetails();
-  }, [items, getProductById]);
+  }, [items, fetchProductById]);
 
   function handleApplyCoupon() {
     const getCurrentCoupon = couponList.find((c) => c.code === couponCode);
@@ -93,7 +102,7 @@ function CheckoutContent() {
       return;
     }
 
-    if (getCurrentCoupon.usageCount >= getCurrentCoupon.usageLimit) {
+    if ((getCurrentCoupon.userCount || 0) >= (getCurrentCoupon.userLimit || 0)) {
       setCouponAppliedError(
         "Coupon has reached its usage limit! Please try a diff coupon"
       );
@@ -129,15 +138,13 @@ function CheckoutContent() {
     }
     try {
       const orderData = {
-        userId: user?.id,
+        userId: user?.id.toString(),
         addressId: selectedAddress,
         items: cartItemsWithDetails.map((item) => ({
-          productId: item.productId,
+          productId: item.productId.toString(),
           productName: item.product.name,
           productCategory: item.product.category,
           quantity: item.quantity,
-          size: item.size,
-          color: item.color,
           price: item.product.price,
         })),
         couponId: appliedCoupon?.id,
@@ -173,7 +180,7 @@ function CheckoutContent() {
   );
 
   const discountAmount = appliedCoupon
-    ? (subTotal * appliedCoupon.discountPercent) / 100
+    ? (subTotal * appliedCoupon.discount) / 100
     : 0;
 
   const total = subTotal - discountAmount;
@@ -303,20 +310,12 @@ function CheckoutContent() {
                   <div key={item.id} className="flex items-center space-x-4">
                     <div className="relative h-2- w-20 rounded-md overflow-hidden">
                       <img
-                        src={item?.product?.images[0]}
-                        alt={item?.product?.name}
+                        src={item?.product?.images?.[0] || item.image || "/placeholder.svg"}
+                        alt={item?.product?.name || item.name}
                         className="object-cover"
                       />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium">{item?.product?.name}</h3>
-                      <p className="text-sm text-gray-600">
-                        {item.color} / {item.size}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        Qty: {item.quantity}
-                      </p>
-                    </div>
+                    
                     <p className="font-medium">
                       ${(item?.product?.price * item.quantity).toFixed(2)}
                     </p>
@@ -353,7 +352,7 @@ function CheckoutContent() {
                   </div>
                   {appliedCoupon && (
                     <div className="flex justify-between text-green-500">
-                      <span>Discount ({appliedCoupon.discountPercent})%</span>
+                      <span>Discount ({appliedCoupon.discount})%</span>
                       <span>${discountAmount.toFixed(2)}</span>
                     </div>
                   )}

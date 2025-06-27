@@ -145,7 +145,7 @@ function Header() {
                 <Link
                   href={item.to}
                   key={index}
-                  className="header-link inline-block flex items-center"
+                  className="header-link  flex items-center"
                 >
                   {item.icon} {item.title}
                 </Link>

@@ -1,43 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
 import { useRouter } from "next/navigation";
-import { useHomePageCategoryStore } from "@/store/useHomePageCategoryStore";
 import { useAuthStore } from "@/store/useAuthStore";
+import SearchBar from "../common/SearchBar";
 import Link from "next/link";
 
 const Header = () => {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const { categories, fetchHomePageCategories } = useHomePageCategoryStore();
   const { user, logout } = useAuthStore();
-
-  useEffect(() => {
-    fetchHomePageCategories();
-  }, [fetchHomePageCategories]);
-
-  const handleSearch = () => {
-    const queryParams = new URLSearchParams();
-    if (searchQuery) queryParams.set('search', searchQuery);
-    if (selectedCategory && selectedCategory !== 'all') queryParams.set('category', selectedCategory);
-    
-    router.push(`/search?${queryParams.toString()}`);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
 
   const handleLogout = async () => {
     await logout();
@@ -47,38 +17,13 @@ const Header = () => {
   return (
     <div className="pt-6">
       <div className="constainer-fluid">
-        <div className="search-bar flex">
-          <Select
-            value={selectedCategory}
-            onValueChange={setSelectedCategory}
-          >
-            <SelectTrigger className="bg-white rounded-none border border-black pt-1.5 pl-1.5 pr-1.5 pb-1.5 text- outline-0 mr-2 w-[396px]">
-              <SelectValue placeholder="All Categories" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
-              {categories.map((category) => (
-                <SelectItem key={category.id} value={category.id.toString()}>
-                  {category.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Input
-            type="text"
-            className="bg-white rounded-none border border-black pt-1.5 pb-1.5 pl-10 pr-10 w-full"
-            placeholder="I'm looking for..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyPress={handleKeyPress}
-          />
-          <Button 
-            className="rounded-none ml-4 pt-1.5 pb-1.5 pl-10 pr-10 bg-primary text-white hover:bg-accent"
-            onClick={handleSearch}
-          >
-            Search
-          </Button>
-        </div>
+        <SearchBar
+          className="flex"
+          buttonClassName="rounded-none ml-4 pt-1.5 pb-1.5 pl-10 pr-10 bg-primary text-white hover:bg-accent"
+          inputClassName="bg-white rounded-none border border-black pt-1.5 pb-1.5 pl-10 pr-10 w-full"
+          placeholder="Search by product name, category, description, or part number..."
+          showCategoryFilter={true}
+        />
       </div>
 {/*       
       <div className="navbar-header">

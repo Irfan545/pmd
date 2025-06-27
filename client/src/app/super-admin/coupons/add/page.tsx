@@ -12,10 +12,10 @@ import { useState } from "react";
 function SuperAdminManageCouponsPage() {
   const [formData, setFormData] = useState({
     code: "",
-    discountPercent: 0,
+    discount: 0,
     startDate: "",
     endDate: "",
-    usageLimit: 0,
+    userLimit: 0,
   });
   const router = useRouter();
   const { toast } = useToast();
@@ -67,8 +67,8 @@ function SuperAdminManageCouponsPage() {
 
     const couponData = {
       ...formData,
-      discountPercent: parseFloat(formData.discountPercent.toString()),
-      usageLimit: parseInt(formData.usageLimit.toString()),
+      discount: parseFloat(formData.discount.toString()),
+      userLimit: parseInt(formData.userLimit.toString()),
     };
 
     const result = await createCoupon(couponData);
@@ -135,11 +135,11 @@ function SuperAdminManageCouponsPage() {
               <Label>Discount Percentage</Label>
               <Input
                 type="number"
-                name="discountPercent"
+                name="discount"
                 placeholder="Enter discount percentage"
                 className="mt-1.5"
                 required
-                value={formData.discountPercent}
+                value={formData.discount}
                 onChange={handleInputChange}
               />
             </div>
@@ -147,11 +147,11 @@ function SuperAdminManageCouponsPage() {
               <Label>Usage Limits</Label>
               <Input
                 type="number"
-                name="usageLimit"
+                name="userLimit"
                 placeholder="Enter usage limits"
                 className="mt-1.5"
                 required
-                value={formData.usageLimit}
+                value={formData.userLimit}
                 onChange={handleInputChange}
               />
             </div>

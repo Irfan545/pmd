@@ -2,44 +2,29 @@ import { Request, Response } from "express";
 import { prisma } from "../app";
 import { Prisma } from "@prisma/client";
 
-// Recursive function to include all nested subcategories
+// Recursive function to include all nested subcategories (removed type filtering)
 const includeSubcategories = {
   subcategories: {
-    where: {
-      type: 'home_page'
-    },
     orderBy: {
       name: 'asc' as const
     },
     include: {
       subcategories: {
-        where: {
-          type: 'home_page'
-        },
         orderBy: {
           name: 'asc' as const
         },
         include: {
           subcategories: {
-            where: {
-              type: 'home_page'
-            },
             orderBy: {
               name: 'asc' as const
             },
             include: {
               subcategories: {
-                where: {
-                  type: 'home_page'
-                },
                 orderBy: {
                   name: 'asc' as const
                 },
                 include: {
                   subcategories: {
-                    where: {
-                      type: 'home_page'
-                    },
                     orderBy: {
                       name: 'asc' as const
                     }
@@ -59,8 +44,8 @@ export const getMainHomeCategories = async (req: Request, res: Response): Promis
     console.log('Fetching main categories...');
     const mainCategories = await prisma.category.findMany({
       where: {
-        parentId: null,
-        type: 'home_page'
+        parentId: null
+        // Removed type: 'home_page' filter
       },
       orderBy: {
         name: 'asc'
@@ -96,8 +81,8 @@ export const getHomeSubcategories = async (req: Request, res: Response): Promise
     console.log(`Fetching subcategories for parent ID: ${id}`);
     const subcategories = await prisma.category.findMany({
       where: {
-        parentId: parseInt(id),
-        type: 'home_page'
+        parentId: parseInt(id)
+        // Removed type: 'home_page' filter
       },
       orderBy: {
         name: 'asc'
@@ -121,10 +106,8 @@ export const getHomeProducts = async (req: Request, res: Response): Promise<void
 
     const products = await prisma.product.findMany({
       where: {
-        categoryId: parseInt(id),
-        category: {
-          type: 'home_page'
-        }
+        categoryId: parseInt(id)
+        // Removed category type filter
       },
       include: {
         brand: true,
@@ -137,10 +120,8 @@ export const getHomeProducts = async (req: Request, res: Response): Promise<void
 
     const total = await prisma.product.count({
       where: {
-        categoryId: parseInt(id),
-        category: {
-          type: 'home_page'
-        }
+        categoryId: parseInt(id)
+        // Removed category type filter
       }
     });
 

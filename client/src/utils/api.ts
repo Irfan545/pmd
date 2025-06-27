@@ -166,6 +166,7 @@ export const API_ROUTES = {
   },
   PRODUCTS: {
     FETCH_ALL: "/api/products",
+    FETCH_ALL_ADMIN: "/api/products/admin/all",
     FETCH_ONE: "/api/products",
     FETCH_BY_CATEGORY: "/api/products/category",
     SEARCH: "/api/products/search",
@@ -174,8 +175,8 @@ export const API_ROUTES = {
   CART: {
     FETCH: "/api/cart/fetch-cart",
     ADD: "/api/cart/add-to-cart",
-    UPDATE: "/api/cart/update-cart",
-    REMOVE: "/api/cart/remove-from-cart",
+    UPDATE: "/api/cart/update",
+    REMOVE: "/api/cart/remove",
   },
   SETTINGS: {
     FETCH: "/api/settings",
@@ -189,10 +190,28 @@ export const API_ROUTES = {
     ALL: '/api/categories',
   },
   HOME_CATEGORIES: '/api/home-categories',
-  ORDER: '/api/order',
-  COUPON: '/api/coupon',
-  ADDRESS: '/api/address',
-  ORDERS: '/api/orders',
+  ORDER: {
+    BASE: '/api/orders',
+    GET_USER_ORDERS: '/api/orders/get-order-by-user-id',
+    CREATE: '/api/orders/create-final-order',
+    GET_ONE: '/api/orders/get-single-order',
+    GET_ALL_FOR_ADMIN: '/api/orders/get-all-orders-for-admin',
+    UPDATE_STATUS: '/api/orders',
+    CREATE_PAYPAL_ORDER: '/api/orders/create-paypal-order',
+    CAPTURE_PAYPAL_ORDER: '/api/orders/capture-paypal-order',
+  },
+  COUPON: {
+    BASE: '/api/coupon',
+    CREATE: '/api/coupon/create-coupon',
+    FETCH_ALL: '/api/coupon/fetch-all-coupons',
+  },
+  ADDRESS: {
+    BASE: '/api/address',
+    GET_ALL: '/api/address/get-address',
+    ADD: '/api/address/add-address',
+    UPDATE: '/api/address/update-address',
+    DELETE: '/api/address/delete-address',
+  },
   COUPONS: '/api/coupons',
 };
 

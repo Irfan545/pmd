@@ -2,9 +2,22 @@ import { Router, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { RequestHandler } from "express";
 import { searchProducts } from '../controllers/productController';
+import { importNewCategories } from '../scripts/importNewCategories';
 
 const router = Router();
 const prisma = new PrismaClient();
+
+// Import new categories from JSON file
+router.post("/import", async (req, res) => {
+  try {
+    console.log('Starting category import via API...');
+    await importNewCategories();
+    res.json({ success: true, message: "Categories imported successfully" });
+  } catch (error) {
+    console.error('Error importing categories:', error);
+    res.status(500).json({ error: "Failed to import categories" });
+  }
+});
 
 // Get all main categories (categories without parents)
 router.get("/main", async (req, res) => {

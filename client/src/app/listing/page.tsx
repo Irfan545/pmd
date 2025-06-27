@@ -1,20 +1,25 @@
 'use client'
-import Categories from "@/components/dashboard/category";
 import { useHomePageCategoryStore } from "@/store/useHomePageCategoryStore";
 import { useEffect, useState } from "react";
 import ProductDetailsSkeleton from "./[id]/productSkeleton";
 import ProductCard from "@/components/dashboard/catalogue/ProductCard";
 import { useProductStore } from "@/store/useProductStore";
 import { Button } from "@/components/ui/button";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const HomePage = () => {
-  const { categories, fetchHomePageCategories, loading: categoriesLoading } = useHomePageCategoryStore();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const { products, loading: productsLoading, fetchProductsForClient, totalPages, currentPage, setCurrentPage } = useProductStore();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  // Get category from URL params
   useEffect(() => {
-    fetchHomePageCategories();
-  }, [fetchHomePageCategories]);
+    const categoryFromUrl = searchParams.get('category');
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [searchParams]);
 
   const handlePageChange = async (page: number) => {
     console.log('Changing page to:', page);
@@ -32,64 +37,79 @@ const HomePage = () => {
       console.error('Error fetching products for page:', page, error);
     }
   };
+
+  // Fetch products when component mounts or category changes
+  useEffect(() => {
+    if (selectedCategory) {
+      fetchProductsForClient({
+        page: 1,
+        limit: 20,
+        categories: [selectedCategory],
+        sortBy: 'createdAt',
+        sortOrder: 'desc'
+      });
+    } else {
+      // Fetch all products if no category is selected
+      fetchProductsForClient({
+        page: 1,
+        limit: 20,
+        sortBy: 'createdAt',
+        sortOrder: 'desc'
+      });
+    }
+  }, [selectedCategory, fetchProductsForClient]);
+
+  const handleProductClick = (productId: number) => {
+    router.push(`/listing/${productId}`);
+  };
  
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-col md:flex-row gap-8">
-        <div className="w-full md:w-64">
-          <h1 className="text-2xl font-bold mb-4">Categories</h1>
-          {categoriesLoading ? (
-            <div>Loading categories...</div>
-          ) : (
-            <Categories 
-              categories={categories} 
-              onCategorySelect={(categoryId) => {
-                setSelectedCategory(categoryId);
-                setCurrentPage(1); // Reset to first page when category changes
-              }}
-            />
-          )}
+    <div className="w-full">
+      {productsLoading ? (
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">Loading products...</div>
         </div>
-        <div className="flex-1">
-          <div className="w-full">
-            {productsLoading ? (
-              <div>Loading products...</div>
-            ) : products.length > 0 ? (
-              <>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-                {/* Pagination Controls */}
-                {totalPages > 1 && (
-                  <div className="flex justify-center items-center gap-2 mt-8">
-                    <Button
-                      variant="outline"
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      disabled={currentPage === 1}
-                    >
-                      Previous
-                    </Button>
-                    <span className="mx-2">
-                      Page {currentPage} of {totalPages}
-                    </span>
-                    <Button
-                      variant="outline"
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      disabled={currentPage === totalPages}
-                    >
-                      Next
-                    </Button>
-                  </div>
-                )}
-              </>
-            ) : (
-              <div>No products found in this category</div>
-            )}
+      ) : products.length > 0 ? (
+        <>
+          <div className="space-y-4 mt-8">
+            {products.map((product) => (
+              <div 
+                key={product.id} 
+                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => handleProductClick(product.id)}
+              >
+                <ProductCard product={product} />
+              </div>
+            ))}
           </div>
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-8">
+              <Button
+                variant="outline"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </Button>
+              <span className="mx-2">
+                Page {currentPage} of {totalPages}
+              </span>
+              <Button
+                variant="outline"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </Button>
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg text-gray-500">No products found in this category</div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
