@@ -43,9 +43,36 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/coupon', couponRoutes);
 app.use('/api/address', addressRoutes);
 
-// Health check route
-app.get('/', (req, res) => {
-  res.send('Server is running');
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  const setup = req.query.setup;
+  
+  if (setup === 'true') {
+    // Run database setup
+    const { exec } = require('child_process');
+    exec('npm run deploy:setup', (error: any, stdout: any, stderr: any) => {
+      if (error) {
+        console.error('Database setup error:', error);
+        return res.status(500).json({ 
+          status: 'error', 
+          message: 'Database setup failed',
+          error: error.message 
+        });
+      }
+      console.log('Database setup completed:', stdout);
+      res.json({ 
+        status: 'success', 
+        message: 'Database setup completed successfully',
+        output: stdout 
+      });
+    });
+  } else {
+    res.json({ 
+      status: 'healthy', 
+      message: 'Server is running',
+      timestamp: new Date().toISOString()
+    });
+  }
 });
 
 // Error handling middleware

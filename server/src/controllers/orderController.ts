@@ -101,6 +101,8 @@ export const capturePaypalOrder = async (
     const { orderId } = req.body;
     const accessToken = await getPaypalAccessToken();
 
+    console.log("Capturing PayPal order:", orderId);
+
     const response = await axios.post(
       `${PAYPAL_BASE_URL}/v2/checkout/orders/${orderId}/capture`,
       {},
@@ -111,8 +113,11 @@ export const capturePaypalOrder = async (
         },
       }
     );
+    
+    console.log("PayPal capture response:", response.data);
     res.status(200).json(response.data);
   } catch (e) {
+    console.error("PayPal capture error:", e);
     res.status(500).json({
       success: false,
       message: "Unexpected error occured!",
@@ -129,7 +134,9 @@ export const createFinalOrder = async (
     const { items, addressId, couponId, total, paymentId } = req.body;
     const userId = req.user?.userId;
 
-    console.log(items, "itemsitemsitems");
+    console.log("createFinalOrder - Request body:", req.body);
+    console.log("createFinalOrder - User ID:", userId);
+    console.log("createFinalOrder - Items:", items);
 
     if (!userId) {
       res.status(401).json({
@@ -137,6 +144,22 @@ export const createFinalOrder = async (
         message: "Unauthenticated user",
       });
 
+      return;
+    }
+
+    if (!addressId) {
+      res.status(400).json({
+        success: false,
+        message: "Address ID is required",
+      });
+      return;
+    }
+
+    if (!items || items.length === 0) {
+      res.status(400).json({
+        success: false,
+        message: "Items are required",
+      });
       return;
     }
 
@@ -148,18 +171,15 @@ export const createFinalOrder = async (
         data: {
           userId,
           addressId: Number(addressId),
-          couponId: couponId as any || null,
+          couponId: couponId ? Number(couponId) : null,
           totalAmount: total,
           paymentMethod: "CREDIT_CARD",
           paymentStatus: "COMPLETED",
           paymentId,
           items: {
             create: items.map((item: any) => ({
-              productId: item.productId,
-              productName: item.productName,
-              productCategory: item.productCategory,
+              productId: parseInt(item.productId),
               quantity: item.quantity,
-              partNumber: item.partNumber,
               price: item.price,
             })),
           },
@@ -169,9 +189,11 @@ export const createFinalOrder = async (
         },
       });
 
+      console.log("Order created successfully:", newOrder);
+
       for (const item of items) {
         await prisma.product.update({
-          where: { id: item.productId },
+          where: { id: parseInt(item.productId) },
           data: {
             stock: { decrement: item.quantity },
             soldCount: { increment: item.quantity },
@@ -191,7 +213,7 @@ export const createFinalOrder = async (
 
       if (couponId) {
         await prisma.coupon.update({
-          where: { id: couponId },
+          where: { id: Number(couponId) },
           data: { userCount: { increment: 1 } },
         });
       }
@@ -202,6 +224,11 @@ export const createFinalOrder = async (
     res.status(201).json(order);
   } catch (e) {
     console.log(e, "createFinalOrder");
+    console.error("Order creation error details:", {
+      error: e,
+      userId: req.user?.userId,
+      body: req.body
+    });
 
     res.status(500).json({
       success: false,

@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Oswald, Roboto } from "next/font/google";
 import "./globals.css";
@@ -29,6 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${oswald.variable} ${roboto.variable}`}>
+      <head>
+        <meta name="permissions-policy" content="geolocation=(self), payment=(self), camera=(), microphone=()" />
+      </head>
       <body>
         {/* <AuthProvider> */}
           <CommonLayout>{children}</CommonLayout>

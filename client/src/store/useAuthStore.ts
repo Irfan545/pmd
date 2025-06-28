@@ -97,18 +97,26 @@ export const useAuthStore = create<AuthState>()(
         set({ isLoading: true });
         try {
           await axiosInstance.post(API_ROUTES.AUTH.LOGOUT);
-          set({ user: null, isLoading: false });
+        } catch (error) {
+          console.error("Logout error:", error);
+          // Continue with logout even if API call fails
+        } finally {
+          // Always clear the state and cookies
+          set({ user: null, isLoading: false, error: null });
           
           // Clear cart on logout
           useCartStore.getState().items = [];
+          
+          // Clear any stored tokens
+          if (typeof window !== 'undefined') {
+            document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+            document.cookie = 'refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+          }
           
           // Redirect to login page after logout
           if (typeof window !== 'undefined') {
             window.location.href = '/auth/login';
           }
-        } catch (error) {
-          console.error("Logout error:", error);
-          set({ error: "Logout failed", isLoading: false });
         }
       },
     }),

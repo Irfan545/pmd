@@ -100,7 +100,7 @@ function ProductDetailsContent({ id }: { id: string }) {
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3 flex gap-4">
             <div className="hidden lg:flex flex-col gap-2 w-24">
-              {product.images?.map((image: string, index: number) => (
+              {product.imageUrl?.map((image: string, index: number) => (
                 <button
                   onClick={() => setSelectedImage(index)}
                   key={index}
@@ -120,7 +120,7 @@ function ProductDetailsContent({ id }: { id: string }) {
             </div>
             <div className="flex-1 relative w-[300px]">
               <img
-                src={product.images?.[selectedImage] || Image.src}
+                src={product.imageUrl?.[selectedImage] || Image.src}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />

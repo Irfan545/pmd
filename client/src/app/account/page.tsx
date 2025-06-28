@@ -208,7 +208,9 @@ function UserAccountPage() {
                                 order.status.slice(1)}
                             </Badge>
                           </TableCell>
-                          <TableCell>${order.total.toFixed(2)}</TableCell>
+                          <TableCell>
+                            ${((order as any).totalAmount || order.total || 0).toFixed(2)}
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -242,6 +244,8 @@ function UserAccountPage() {
                       <Label>Name</Label>
                       <Input
                         id="name"
+                        name="name"
+                        autoComplete="name"
                         value={formData.name}
                         required
                         onChange={(e) =>
@@ -257,6 +261,8 @@ function UserAccountPage() {
                       <Label>Address</Label>
                       <Input
                         id="address"
+                        name="address"
+                        autoComplete="street-address"
                         value={formData.address}
                         required
                         onChange={(e) =>
@@ -272,6 +278,8 @@ function UserAccountPage() {
                       <Label>City</Label>
                       <Input
                         id="city"
+                        name="city"
+                        autoComplete="address-level2"
                         value={formData.city}
                         required
                         onChange={(e) =>
@@ -287,6 +295,8 @@ function UserAccountPage() {
                       <Label>Country</Label>
                       <Input
                         id="country"
+                        name="country"
+                        autoComplete="country-name"
                         value={formData.country}
                         required
                         onChange={(e) =>
@@ -302,6 +312,8 @@ function UserAccountPage() {
                       <Label>Postal Code</Label>
                       <Input
                         id="postalCode"
+                        name="postalCode"
+                        autoComplete="postal-code"
                         value={formData.postalCode}
                         required
                         onChange={(e) =>
@@ -317,6 +329,8 @@ function UserAccountPage() {
                       <Label>Phone</Label>
                       <Input
                         id="phone"
+                        name="phone"
+                        autoComplete="tel"
                         value={formData.phone}
                         required
                         onChange={(e) =>

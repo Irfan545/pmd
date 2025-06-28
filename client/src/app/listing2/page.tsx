@@ -186,7 +186,7 @@ function ProductListingPage() {
                     >
                       <div className="relative aspect-[3/4] mb-4 bg-gray-100 overflow-hidden">
                         <img
-                          src={product.images?.[0] || "/placeholder.svg"}
+                          src={product.imageUrl?.[0] || "/placeholder.svg"}
                           alt={product.name}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                         />

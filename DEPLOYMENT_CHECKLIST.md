@@ -16,13 +16,14 @@ JWT_SECRET=your-secret-key
 CLOUDINARY_CLOUD_NAME=your-cloud-name
 CLOUDINARY_API_KEY=your-api-key
 CLOUDINARY_API_SECRET=your-api-secret
-CLIENT_URL=https://your-frontend-url.netlify.app
+CLIENT_URL=https://pmd-gray.vercel.app
 ```
 
 ### After Backend Deploy:
 - [ ] Backend URL is working
 - [ ] Run database setup: `npm run deploy:setup`
 - [ ] Test API endpoints
+- [ ] Verify CORS is working with frontend
 
 ## 🎨 Frontend Deployment (Netlify)
 

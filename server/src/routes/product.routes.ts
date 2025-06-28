@@ -4,7 +4,7 @@ import { authJWT, isSuperAdmin } from "../middleware/authMiddleware";
 import { upload } from "../middleware/uploadMiddleware";
 import cloudinary from "../config/cloudinary";
 import fs from "fs";
-import { searchProducts, fetchProductsByCategory } from '../controllers/productController';
+import { searchProducts, fetchProductsByCategory, updateProductById } from '../controllers/productController';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -420,6 +420,14 @@ const getProductsByCategory: RequestHandler = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch products by category' });
   }
 };
+
+router.put(
+  '/:id',
+  authJWT,
+  isSuperAdmin,
+  upload.array('images', 5),
+  updateProductById as RequestHandler
+);
 
 router.get('/category/:categoryId', getProductsByCategory);
 

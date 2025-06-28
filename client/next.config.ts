@@ -19,6 +19,14 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
+  // Disable development overlay to prevent ShadowPortal errors
+  devIndicators: {
+    buildActivity: false,
+  },
+  // Improve development stability
+  experimental: {
+    optimizePackageImports: ['@paypal/react-paypal-js'],
+  },
 }
 
 export default nextConfig;

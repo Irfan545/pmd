@@ -96,7 +96,7 @@ function SuperAdminManageOrdersPage() {
                   {new Date(order.createdAt).toLocaleDateString()}
                 </TableCell>
                 <TableCell>{order.user.name}</TableCell>
-                <TableCell>{order.total.toFixed(2)}</TableCell>
+                <TableCell>{((order as any).totalAmount || order.total || 0).toFixed(2)}</TableCell>
                 <TableCell>{order.paymentStatus}</TableCell>
                 <TableCell>
                   {order.items.length}{" "}

@@ -143,7 +143,9 @@ function CheckoutContent() {
         items: cartItemsWithDetails.map((item) => ({
           productId: item.productId.toString(),
           productName: item.product.name,
-          productCategory: item.product.category,
+          productCategory: typeof item.product.category === 'string' 
+            ? item.product.category 
+            : item.product.category?.name || 'Unknown',
           quantity: item.quantity,
           price: item.product.price,
         })),
@@ -153,6 +155,8 @@ function CheckoutContent() {
         paymentStatus: "COMPLETED" as const,
         paymentId: data.id,
       };
+
+      console.log("Sending order data:", orderData);
 
       const createFinalOrderResponse = await createFinalOrder(orderData);
 
@@ -205,7 +209,7 @@ function CheckoutContent() {
             <Card className="p-6">
               <h2 className="text-xl font-semibold mb-4">Delivery</h2>
               <div className="space-y-4">
-                {addresses.map((address) => (
+                {(addresses || []).map((address) => (
                   <div key={address.id} className="flex items-start spce-x-2">
                     <Checkbox
                       id={address.id}
@@ -245,6 +249,14 @@ function CheckoutContent() {
                   <p className="mb-3">
                     All transactions are secure and encrypted
                   </p>
+                  {/* Development/Testing Note */}
+                  {process.env.NODE_ENV === 'development' && (
+                    <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                      <p className="text-sm text-yellow-800">
+                        <strong>Testing Note:</strong> Use valid UK postal codes like "SW1A 1AA" or "M1 1AA" when testing PayPal card fields. Auto-fill features are disabled in development (HTTP) and will work in production (HTTPS).
+                      </p>
+                    </div>
+                  )}
                   <PayPalButtons
                     style={{
                       layout: "vertical",
@@ -275,6 +287,36 @@ function CheckoutContent() {
                       } else {
                         alert("Failed to capture paypal order");
                       }
+                    }}
+                    onError={(err: any) => {
+                      console.error("PayPal error:", err);
+                      
+                      // Handle specific card field errors
+                      if (err?.message?.includes('ZIP code') || err?.message?.includes('postal code')) {
+                        toast({
+                          title: "Invalid Postal Code",
+                          description: "Please enter a valid UK postal code (e.g., SW1A 1AA or M1 1AA)",
+                          variant: "destructive",
+                        });
+                      } else if (err?.message?.includes('card')) {
+                        toast({
+                          title: "Card Error",
+                          description: "Please check your card details and try again",
+                          variant: "destructive",
+                        });
+                      } else {
+                        toast({
+                          title: "Payment Error",
+                          description: "There was an error processing your payment. Please try again.",
+                          variant: "destructive",
+                        });
+                      }
+                    }}
+                    onCancel={() => {
+                      toast({
+                        title: "Payment Cancelled",
+                        description: "Your payment was cancelled.",
+                      });
                     }}
                   />
                 </div>

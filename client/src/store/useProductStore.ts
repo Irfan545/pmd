@@ -40,7 +40,7 @@ interface ProductState {
   fetchAllProductsForAdmin: () => Promise<void>;
   fetchProductById: (id: string) => Promise<Product | null>;
   createProduct: (productData: FormData) => Promise<void>;
-  updateProduct: (id: string, productData: FormData) => Promise<void>;
+  updateProduct: (id: string, productData: FormData) => Promise<Product | null>;
   deleteProduct: (id: string) => Promise<void>;
   setCurrentPage: (page: number) => void;
   fetchProductsForClient: (params: {
@@ -196,7 +196,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
     set({ loading: true, error: null });
     try {
       const response = await axios.put(
-        `${API_ROUTES.PRODUCTS}/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`,
         productData,
         {
           withCredentials: true,
@@ -206,8 +206,10 @@ export const useProductStore = create<ProductState>((set, get) => ({
         }
       );
       set({ loading: false });
+      return response.data.product;
     } catch (error) {
       set({ error: "Failed to update product", loading: false });
+      return null;
     }
   },
 

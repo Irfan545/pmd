@@ -156,20 +156,26 @@ export const refreshToken = async (
 export const logout = async (req: Request, res: Response): Promise<void> => {
   try {
     const { refreshToken } = req.cookies;
+    
+    // Clear cookies regardless of whether refresh token exists
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+    
     if (!refreshToken) {
-      res
-        .status(401)
-        .json({ success: false, error: "No refresh token found!" });
+      // User might already be logged out, just return success
+      res.status(200).json({ success: true, message: "Logged out successfully" });
       return;
     }
+    
+    // If refresh token exists, you could optionally clear it from the database
     // await prisma.user.update({
     //   where: { refreshToken },
     //   data: { refreshToken: null },
     // });
-    res.clearCookie("accessToken");
-    res.clearCookie("refreshToken");
+    
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
+    console.error('Logout error:', error);
     res.status(500).json({ error: "Error logging out" });
   }
 };
