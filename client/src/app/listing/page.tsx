@@ -1,13 +1,13 @@
 'use client'
 import { useHomePageCategoryStore } from "@/store/useHomePageCategoryStore";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import ProductDetailsSkeleton from "./[id]/productSkeleton";
 import ProductCard from "@/components/dashboard/catalogue/ProductCard";
 import { useProductStore } from "@/store/useProductStore";
 import { Button } from "@/components/ui/button";
 import { useSearchParams, useRouter } from "next/navigation";
 
-const HomePage = () => {
+const HomePageContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { products, loading: productsLoading, fetchProductsForClient, totalPages, currentPage, setCurrentPage } = useProductStore();
@@ -113,5 +113,11 @@ const HomePage = () => {
     </div>
   );
 };
+
+const HomePage = () => (
+  <Suspense fallback={<div className="flex justify-center items-center h-64"><div className="text-lg">Loading products...</div></div>}>
+    <HomePageContent />
+  </Suspense>
+);
 
 export default HomePage;

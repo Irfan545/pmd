@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useProductStore } from "@/store/useProductStore";
 import { Product } from "@/store/useProductStore";
@@ -43,7 +43,7 @@ interface ProductWithPartNumbers {
   partNumbers: PartNumber[];
 }
 
-const SearchResults = () => {
+const SearchResultsContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { products, loading, error, fetchProducts, currentPage, totalPages, setCurrentPage } = useProductStore();
@@ -192,6 +192,14 @@ const SearchResults = () => {
         </>
       )}
     </div>
+  );
+};
+
+const SearchResults = () => {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center h-64"><div className="text-lg">Loading search...</div></div>}>
+      <SearchResultsContent />
+    </Suspense>
   );
 };
 

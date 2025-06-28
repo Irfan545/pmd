@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2018",
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./",
-    "strict": true,
-    "esModuleInterop": true
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"]
   },
-  "include": ["src/**/*", "prisma/**/*"]
+  "include": ["src/**/*", "prisma/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -47,16 +47,14 @@ const LoginPage = () => {
         return;
       }
 
-      const success = await login(formData.email, formData.password);
+      await login(formData.email, formData.password);
       
-      if (success) {
-        toast("Log-In successfully");
-        const user = useAuthStore.getState().user;
-        if (user?.role === "SUPER_ADMIN") {
-          router.push("/super-admin");
-        } else {
-          router.push("/");
-        }
+      toast("Log-In successfully");
+      const user = useAuthStore.getState().user;
+      if (user?.role === "SUPER_ADMIN") {
+        router.push("/super-admin");
+      } else {
+        router.push("/");
       }
     } catch (error) {
       console.error('Login error:', error);

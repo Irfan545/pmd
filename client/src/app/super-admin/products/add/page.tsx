@@ -18,7 +18,7 @@ import { brands, categories, sizes, colors } from "@/utils/config";
 import { Upload } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState, Suspense } from "react";
 
 interface FormState {
   name: string;
@@ -323,4 +323,10 @@ function SuperAdminManageProductPage() {
   );
 }
 
-export default SuperAdminManageProductPage;
+const SuperAdminManageProductPageWrapper = () => (
+  <Suspense fallback={<div className="flex justify-center items-center h-64"><div className="text-lg">Loading...</div></div>}>
+    <SuperAdminManageProductPage />
+  </Suspense>
+);
+
+export default SuperAdminManageProductPageWrapper;
