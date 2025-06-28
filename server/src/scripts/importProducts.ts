@@ -18,8 +18,49 @@ const categoryMapping: { [key: string]: number } = {
   'Suspension Fluids': 119   // Suspension Fluids subcategory
 };
 
-async function importProducts() {
+// Function to check existing products
+async function checkExistingProducts() {
+  const productCount = await prisma.product.count();
+  const partNumberCount = await prisma.partNumber.count();
+  
+  console.log(`\n📊 Current Database Status:`);
+  console.log(`- Products: ${productCount}`);
+  console.log(`- Part Numbers: ${partNumberCount}`);
+  
+  return { productCount, partNumberCount };
+}
+
+// Function to clear all products (use with caution)
+async function clearAllProducts() {
+  console.log('\n⚠️  Clearing all products and part numbers...');
+  
+  // Delete all part numbers first (due to foreign key constraints)
+  await prisma.partNumber.deleteMany({});
+  console.log('✅ Part numbers cleared');
+  
+  // Delete all products
+  await prisma.product.deleteMany({});
+  console.log('✅ Products cleared');
+  
+  console.log('🗑️  All products and part numbers have been removed');
+}
+
+async function importProducts(options: { force?: boolean } = {}) {
   try {
+    // Check existing products first
+    const { productCount, partNumberCount } = await checkExistingProducts();
+    
+    if (productCount > 0 && !options.force) {
+      console.log(`\n⚠️  Found ${productCount} existing products in database.`);
+      console.log('💡 Use { force: true } option to clear and re-import all products.');
+      console.log('💡 Or use the existing products - they will not be duplicated.');
+      return;
+    }
+    
+    if (options.force) {
+      await clearAllProducts();
+    }
+
     const csvFilePath = path.join(__dirname, '../../../data/Products1.csv');
     const fileContent = fs.readFileSync(csvFilePath, 'utf-8');
 
@@ -34,7 +75,11 @@ async function importProducts() {
       records.push(record);
     }
 
-    console.log(`Found ${records.length} products to import`);
+    console.log(`\n📦 Found ${records.length} products to import`);
+
+    let createdCount = 0;
+    let updatedCount = 0;
+    let skippedCount = 0;
 
     for (const record of records) {
       // Debug logging
@@ -46,6 +91,7 @@ async function importProducts() {
 
       if (!categoryId) {
         console.log(`No category mapping found for Product Group: ${productGroup}, skipping product: ${record['Part Number']}`);
+        skippedCount++;
         continue;
       }
 
@@ -58,12 +104,14 @@ async function importProducts() {
 
       if (!category) {
         console.log(`Category not found for ID: ${categoryId}, Product Group: ${productGroup}, skipping product: ${record['Part Number']}`);
+        skippedCount++;
         continue;
       }
 
       // Validate part number
       if (!record['Part Number']) {
         console.log(`Skipping record - missing part number:`, record);
+        skippedCount++;
         continue;
       }
 
@@ -81,7 +129,29 @@ async function importProducts() {
       }
 
       try {
-        // Create or update the product
+        // Check if product already exists by part number (only if not forcing)
+        if (!options.force) {
+          const existingProduct = await prisma.product.findFirst({
+            where: {
+              partNumbers: {
+                some: {
+                  number: String(record['Part Number'])
+                }
+              }
+            },
+            include: {
+              partNumbers: true
+            }
+          });
+
+          if (existingProduct) {
+            console.log(`Product already exists with part number ${record['Part Number']}, skipping: ${existingProduct.name}`);
+            skippedCount++;
+            continue;
+          }
+        }
+
+        // Create the product since it doesn't exist
         const product = await prisma.product.create({
           data: {
             name: record.Description || record['Part Number'],
@@ -102,13 +172,20 @@ async function importProducts() {
           }
         });
 
-        console.log(`Successfully imported product: ${product.name} (${record['Part Number']}) - Price: $${price} - Category: ${category.name}`);
+        console.log(`Successfully created product: ${product.name} (${record['Part Number']}) - Price: $${price} - Category: ${category.name}`);
+        createdCount++;
       } catch (error) {
         console.error('Error creating product:', error);
         console.error('Failed record:', record);
+        skippedCount++;
       }
     }
 
+    console.log('\n=== Import Summary ===');
+    console.log(`Total records processed: ${records.length}`);
+    console.log(`Products created: ${createdCount}`);
+    console.log(`Products updated: ${updatedCount}`);
+    console.log(`Products skipped: ${skippedCount}`);
     console.log('Products imported successfully');
   } catch (error) {
     console.error('Error importing products:', error);
@@ -119,7 +196,10 @@ async function importProducts() {
 
 // Run the import if this file is executed directly
 if (require.main === module) {
-  importProducts()
+  const force = process.argv.includes('--force');
+  console.log(`🚀 Starting product import${force ? ' (FORCE MODE)' : ''}...`);
+  
+  importProducts({ force })
     .then(() => {
       console.log('Product import script completed');
       process.exit(0);
@@ -130,4 +210,4 @@ if (require.main === module) {
     });
 }
 
-export { importProducts }; 
+export { importProducts, checkExistingProducts, clearAllProducts }; 

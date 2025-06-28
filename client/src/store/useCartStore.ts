@@ -45,9 +45,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
 
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + API_ROUTES.CART.FETCH, {
-        withCredentials: true,
-      });
+      const response = await axiosInstance.get(API_ROUTES.CART.FETCH);
       if (response.data.success) {
         set({ items: response.data.data, isLoading: false });
       } else {

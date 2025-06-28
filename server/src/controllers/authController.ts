@@ -21,18 +21,29 @@ async function setTokenInCookie(
   accessToken: string,
   refreshToken: string
 ): Promise<void> {
+  // Determine if we're in production based on environment or request protocol
+  const isProduction = process.env.NODE_ENV === "production" || process.env.NODE_ENV === "PRODUCTION";
+  const isSecure = isProduction || process.env.FORCE_HTTPS === "true";
+  
+  console.log('Setting cookies with options:', {
+    isProduction,
+    isSecure,
+    nodeEnv: process.env.NODE_ENV,
+    clientUrl: process.env.CLIENT_URL
+  });
+
   // Set the access token and refresh token in cookies
   res.cookie("accessToken", accessToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    secure: isSecure,
+    sameSite: isProduction ? "none" : "lax",
     path: "/",
     maxAge: 60 * 60 * 1000, // 1 hour
   });
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    secure: isSecure,
+    sameSite: isProduction ? "none" : "lax",
     path: "/",
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });

@@ -16,6 +16,9 @@
     "prisma:db:push": "prisma db push",
     "import:categories": "ts-node src/scripts/importNewCategories.ts",
     "import:products": "ts-node src/scripts/importProducts.ts",
+    "import:products:force": "ts-node src/scripts/importProducts.ts --force",
+    "check:products": "ts-node -e \"import('./src/scripts/importProducts').then(m => m.checkExistingProducts())\"",
+    "clear:products": "ts-node -e \"import('./src/scripts/importProducts').then(m => m.clearAllProducts())\"",
     "deploy:setup": "npm run prisma:generate && npm run prisma:migrate && npm run prisma:seed"
   },
   "prisma": {

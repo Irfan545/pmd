@@ -8,9 +8,13 @@ import {
   getOrder,
   getOrdersByUserId,
   updateOrderStatus,
+  checkPaypalHealth,
 } from "../controllers/orderController";
 
 const router = express.Router();
+
+// PayPal health check (no auth required for debugging)
+router.get("/paypal-health", checkPaypalHealth);
 
 router.use(authJWT);
 

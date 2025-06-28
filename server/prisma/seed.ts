@@ -78,30 +78,45 @@ async function main() {
     console.log('ℹ️  Users already exist, skipping user creation');
   }
 
-  // Step 2: Import categories
-  console.log('\n📂 Importing categories...');
-  try {
-    await importNewCategories();
-    console.log('✅ Categories imported successfully!');
-  } catch (error) {
-    console.error('❌ Error importing categories:', error);
-    // Continue with other imports even if categories fail
+  // Step 2: Check if categories exist
+  console.log('\n📂 Checking categories...');
+  const existingCategories = await prisma.category.count();
+  
+  if (existingCategories === 0) {
+    console.log('📂 Importing categories...');
+    try {
+      await importNewCategories();
+      console.log('✅ Categories imported successfully!');
+    } catch (error) {
+      console.error('❌ Error importing categories:', error);
+      // Continue with other imports even if categories fail
+    }
+  } else {
+    console.log(`ℹ️  Categories already exist (${existingCategories} found), skipping category import`);
   }
 
-  // Step 3: Import products
-  console.log('\n📦 Importing products...');
-  try {
-    await importProducts();
-    console.log('✅ Products imported successfully!');
-  } catch (error) {
-    console.error('❌ Error importing products:', error);
+  // Step 3: Check if products exist
+  console.log('\n📦 Checking products...');
+  const existingProducts = await prisma.product.count();
+  
+  if (existingProducts === 0) {
+    console.log('📦 Importing products...');
+    try {
+      await importProducts();
+      console.log('✅ Products imported successfully!');
+    } catch (error) {
+      console.error('❌ Error importing products:', error);
+    }
+  } else {
+    console.log(`ℹ️  Products already exist (${existingProducts} found), skipping product import`);
+    console.log('💡 To re-import products, first clear the database or use the import script directly');
   }
 
   console.log('\n🎉 Database seeding completed!');
   console.log('\n📋 Summary:');
   console.log('- Users: admin@gmail.com (SUPER_ADMIN) / user@example.com (USER)');
-  console.log('- Categories: Imported from newCat.json');
-  console.log('- Products: Imported from Products1.csv');
+  console.log(`- Categories: ${await prisma.category.count()} categories in database`);
+  console.log(`- Products: ${await prisma.product.count()} products in database`);
   console.log('\n🔑 Login credentials:');
   console.log('Admin: admin@gmail.com / admin123');
   console.log('User: user@example.com / user123');

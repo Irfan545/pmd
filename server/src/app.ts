@@ -70,7 +70,15 @@ app.get("/api/health", (req, res) => {
     res.json({ 
       status: 'healthy', 
       message: 'Server is running',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      environment: {
+        nodeEnv: process.env.NODE_ENV,
+        clientUrl: process.env.CLIENT_URL,
+        hasJwtSecret: !!process.env.JWT_SECRET,
+        hasDatabaseUrl: !!process.env.DATABASE_URL,
+        hasPaypalClientId: !!process.env.PAYPAL_CLIENT_ID,
+        hasPaypalClientSecret: !!process.env.PAYPAL_CLIENT_SECRET,
+      }
     });
   }
 });

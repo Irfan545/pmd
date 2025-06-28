@@ -50,7 +50,16 @@ git push origin main
 2. Get your Cloud Name, API Key, and API Secret
 3. Note these credentials for later
 
-### 4. **Deploy Backend**
+### 4. **Set Up PayPal**
+
+1. Create a [PayPal Developer](https://developer.paypal.com/) account
+2. Create a new app in the PayPal Developer Dashboard
+3. Get your Client ID and Client Secret
+4. For testing, use the Sandbox environment
+5. For production, use the Live environment
+6. Note these credentials for later
+
+### 5. **Deploy Backend**
 
 #### Using Railway:
 1. Connect your GitHub repository to Railway
@@ -63,6 +72,8 @@ git push origin main
    CLOUDINARY_API_KEY=your_cloudinary_api_key
    CLOUDINARY_API_SECRET=your_cloudinary_api_secret
    CLIENT_URL=https://your-frontend-url.netlify.app
+   PAYPAL_CLIENT_ID=your-paypal-client-id
+   PAYPAL_CLIENT_SECRET=your-paypal-client-secret
    ```
 4. Deploy and note the backend URL
 
@@ -73,7 +84,7 @@ git push origin main
 4. Set start command: `npm start`
 5. Add the same environment variables as above
 
-### 5. **Deploy Frontend**
+### 6. **Deploy Frontend**
 
 #### Using Netlify:
 1. Go to [Netlify](https://netlify.com/)
@@ -85,10 +96,11 @@ git push origin main
 4. Add environment variables:
    ```
    NEXT_PUBLIC_API_URL=https://your-backend-url.railway.app
+   NEXT_PUBLIC_PAYPAL_CLIENT_ID=your-paypal-client-id
    ```
 5. Deploy
 
-### 6. **Populate Database**
+### 7. **Populate Database**
 
 After deployment, run the database seeding:
 
@@ -112,12 +124,15 @@ CLOUDINARY_CLOUD_NAME="your-cloud-name"
 CLOUDINARY_API_KEY="your-api-key"
 CLOUDINARY_API_SECRET="your-api-secret"
 CLIENT_URL="https://your-frontend-url.netlify.app"
+PAYPAL_CLIENT_ID="your-paypal-client-id"
+PAYPAL_CLIENT_SECRET="your-paypal-client-secret"
 PORT=3001
 ```
 
 ### Frontend (.env.local)
 ```env
 NEXT_PUBLIC_API_URL="https://your-backend-url.railway.app"
+NEXT_PUBLIC_PAYPAL_CLIENT_ID="your-paypal-client-id"
 ```
 
 ## 📊 Database Population
@@ -145,7 +160,45 @@ The deployment will automatically populate your database with:
 1. **CORS Errors**: Make sure `CLIENT_URL` is set correctly in backend
 2. **Database Connection**: Verify `DATABASE_URL` is correct
 3. **Image Upload**: Check Cloudinary credentials
-4. **Build Failures**: Check Node.js version compatibility
+4. **PayPal Integration**: Verify PayPal credentials and environment (sandbox/live)
+5. **Authentication Issues**: Check JWT_SECRET and cookie settings
+6. **Build Failures**: Check Node.js version compatibility
+
+### Authentication & Cookie Issues
+
+If you're getting `401 Unauthorized` errors in production:
+
+1. **Check Environment Variables on Render:**
+   ```env
+   NODE_ENV=production
+   JWT_SECRET=your-super-secret-jwt-key
+   CLIENT_URL=https://your-vercel-app.vercel.app
+   FORCE_HTTPS=true
+   ```
+
+2. **Check Environment Variables on Vercel:**
+   ```env
+   NEXT_PUBLIC_API_URL=https://your-render-backend.onrender.com
+   NEXT_PUBLIC_PAYPAL_CLIENT_ID=your-paypal-client-id
+   ```
+
+3. **Test Backend Health:**
+   - Visit: `https://your-render-backend.onrender.com/api/health`
+   - Should show environment variables status
+
+4. **Test PayPal Health:**
+   - Visit: `https://your-render-backend.onrender.com/api/orders/paypal-health`
+   - Should show PayPal configuration status
+
+5. **Check Cookie Settings:**
+   - Both frontend and backend must be HTTPS
+   - Cookies must be set with `SameSite=None; Secure=true` in production
+   - CORS must allow credentials
+
+6. **Common Cookie Issues:**
+   - If `NODE_ENV` is not set to "production", cookies won't be secure
+   - If frontend is HTTP, cookies with `SameSite=None` won't work
+   - If CORS doesn't allow credentials, cookies won't be sent
 
 ### Debug Commands:
 

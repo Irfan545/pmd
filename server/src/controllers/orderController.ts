@@ -11,20 +11,36 @@ const PAYPAL_BASE_URL = process.env.NODE_ENV === 'production'
   : 'https://api-m.sandbox.paypal.com';
 
 async function getPaypalAccessToken() {
-  const response = await axios.post(
-    `${PAYPAL_BASE_URL}/v1/oauth2/token`,
-    "grant_type=client_credentials",
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${Buffer.from(
-          `${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`
-        ).toString("base64")}`,
-      },
-    }
-  );
+  try {
+    console.log("Getting PayPal access token...");
+    console.log("PayPal Base URL:", PAYPAL_BASE_URL);
+    console.log("PayPal Client ID exists:", !!PAYPAL_CLIENT_ID);
+    console.log("PayPal Client Secret exists:", !!PAYPAL_CLIENT_SECRET);
+    
+    const response = await axios.post(
+      `${PAYPAL_BASE_URL}/v1/oauth2/token`,
+      "grant_type=client_credentials",
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Basic ${Buffer.from(
+            `${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`
+          ).toString("base64")}`,
+        },
+      }
+    );
 
-  return response.data.access_token;
+    console.log("PayPal access token obtained successfully");
+    return response.data.access_token;
+  } catch (error) {
+    console.error("Failed to get PayPal access token:", error);
+    console.error("PayPal auth error details:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+    });
+    throw new Error("Failed to authenticate with PayPal");
+  }
 }
 
 export const createPaypalOrder = async (
@@ -34,19 +50,32 @@ export const createPaypalOrder = async (
 ): Promise<void> => {
   try {
     const { items, total } = req.body;
+    console.log("createPaypalOrder - Request body:", { items, total });
+    
     const accessToken = await getPaypalAccessToken();
 
-    const paypalItems = items.map((item: any) => ({
-      name: item.name,
-      description: item.description || "",
-      sku: item.id,
-      unit_amount: {
-        currency_code: "GBP",
-        value: item.price.toFixed(2),
-      },
-      quantity: item.quantity.toString(),
-      category: "PHYSICAL_GOODS",
-    }));
+    // Map items to PayPal format, handling different item structures
+    const paypalItems = items.map((item: any) => {
+      // Handle both cart item structure and product structure
+      const itemName = item.name || item.product?.name || 'Product';
+      const itemPrice = item.price || item.product?.price || 0;
+      const itemId = item.id || item.productId || item.product?.id || 'unknown';
+      const itemDescription = item.description || item.product?.description || '';
+      
+      return {
+        name: itemName,
+        description: itemDescription,
+        sku: itemId.toString(),
+        unit_amount: {
+          currency_code: "GBP",
+          value: itemPrice.toFixed(2),
+        },
+        quantity: item.quantity.toString(),
+        category: "PHYSICAL_GOODS",
+      };
+    });
+
+    console.log("PayPal items mapped:", paypalItems);
 
     const itemTotal = paypalItems.reduce(
       (sum: any, item: any) =>
@@ -54,26 +83,43 @@ export const createPaypalOrder = async (
       0
     );
 
+    console.log("Item total calculated:", itemTotal);
+    console.log("Final total:", total);
+
+    // Check if there's a discount applied (item total > final total)
+    const hasDiscount = itemTotal > total;
+    const discountAmount = hasDiscount ? itemTotal - total : 0;
+
+    const paypalOrderData = {
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          amount: {
+            currency_code: "GBP",
+            value: total.toFixed(2),
+            breakdown: {
+              item_total: {
+                currency_code: "GBP",
+                value: itemTotal.toFixed(2),
+              },
+              ...(hasDiscount && {
+                discount: {
+                  currency_code: "GBP",
+                  value: discountAmount.toFixed(2),
+                }
+              }),
+            },
+          },
+          items: paypalItems,
+        },
+      ],
+    };
+
+    console.log("PayPal order data:", paypalOrderData);
+
     const response = await axios.post(
       `${PAYPAL_BASE_URL}/v2/checkout/orders`,
-      {
-        intent: "CAPTURE",
-        purchase_units: [
-          {
-            amount: {
-              currency_code: "GBP",
-              value: total.toFixed(2),
-              breakdown: {
-                item_total: {
-                  currency_code: "GBP",
-                  value: itemTotal.toFixed(2),
-                },
-              },
-            },
-            items: paypalItems,
-          },
-        ],
-      },
+      paypalOrderData,
       {
         headers: {
           "Content-Type": "application/json",
@@ -83,11 +129,20 @@ export const createPaypalOrder = async (
       }
     );
 
+    console.log("PayPal order created successfully:", response.data);
     res.status(200).json(response.data);
   } catch (e) {
+    console.error("PayPal order creation error:", e);
+    console.error("Error details:", {
+      message: e.message,
+      response: e.response?.data,
+      status: e.response?.status,
+    });
+    
     res.status(500).json({
       success: false,
-      message: "Unexpected error occured!",
+      message: "Failed to create PayPal order",
+      error: e.message,
     });
   }
 };
@@ -388,6 +443,67 @@ export const getOrdersByUserId = async (
     res.status(500).json({
       success: false,
       message: "Unexpected error occured!",
+    });
+  }
+};
+
+export const checkPaypalHealth = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    console.log("Checking PayPal health...");
+    
+    // Check if environment variables are set
+    const hasClientId = !!PAYPAL_CLIENT_ID;
+    const hasClientSecret = !!PAYPAL_CLIENT_SECRET;
+    const baseUrl = PAYPAL_BASE_URL;
+    
+    if (!hasClientId || !hasClientSecret) {
+      res.status(400).json({
+        success: false,
+        message: "PayPal credentials not configured",
+        details: {
+          hasClientId,
+          hasClientSecret,
+          baseUrl
+        }
+      });
+      return;
+    }
+    
+    // Try to get access token
+    try {
+      const accessToken = await getPaypalAccessToken();
+      res.status(200).json({
+        success: true,
+        message: "PayPal is configured correctly",
+        details: {
+          hasClientId,
+          hasClientSecret,
+          baseUrl,
+          accessToken: accessToken ? "Valid" : "Invalid"
+        }
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: "PayPal authentication failed",
+        details: {
+          hasClientId,
+          hasClientSecret,
+          baseUrl,
+          error: error.message
+        }
+      });
+    }
+  } catch (e) {
+    console.error("PayPal health check error:", e);
+    res.status(500).json({
+      success: false,
+      message: "PayPal health check failed",
+      error: e.message,
     });
   }
 };
